@@ -1,0 +1,13 @@
+# 嵌套独立仓库（已单独推送到 cat-opiuu/zym-stocktab）
+zym-stocktab/
+
+# 编辑器与工具目录
+.vscode/
+.trae-html-share-packages/
+.trae/skills/
+
+# Swiper 官方库本地副本（页面使用 CDN，不入库）
+swiper/
+
+# 字体源文件目录（页面未引用）
+font_1/
