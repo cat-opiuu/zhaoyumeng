@@ -12,3 +12,6 @@ swiper/
 
 # 字体源文件目录（页面未引用）
 font_1/
+
+# Gitee 模板仓库的 .git 备份（仅本地保留）
+.git_gitee_backup/
