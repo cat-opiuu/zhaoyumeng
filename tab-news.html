@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新闻选项卡</title>
+<!--
+  作者：赵予萌
+  建立时间：2026-11-04 13:42:42
+  使用大模型：GLM-5.3-Flash
+  功能名称：新闻选项卡页面
+-->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #F6F4EE;
+    color: #191712;
+    line-height: 1.7;
+    padding: 40px 20px;
+  }
+  .zym_container { max-width: 720px; margin: 0 auto; }
+
+  /* 选项卡栏 */
+  .zym_tabs {
+    display: flex;
+    border: 1px solid #191712;
+    border-bottom: none;
+  }
+  .zym_tab {
+    flex: 1;
+    padding: 12px 0;
+    font: inherit;
+    font-size: 15px;
+    background: #ECE8DE;
+    border: none;
+    border-right: 1px solid #191712;
+    cursor: pointer;
+  }
+  .zym_tab:last-child { border-right: none; }
+  .zym_tab:hover { background: #E4EAF6; }
+  .zym_tab.zym_active { background: #191712; color: #F6F4EE; font-weight: bold; }
+
+  /* 内容面板 */
+  .zym_panel { display: none; border: 1px solid #191712; background: #FFFDF8; padding: 20px 24px; }
+  .zym_panel.zym_active { display: block; }
+  .zym_panel h2 { font-size: 18px; margin-bottom: 12px; color: #0A4DA3; }
+  .zym_news-list { list-style: none; }
+  .zym_news-list li { padding: 9px 0; border-bottom: 1px dashed rgba(25,23,18,.2); font-size: 14.5px; }
+  .zym_news-list li:last-child { border-bottom: none; }
+  .zym_news-list time { font-size: 12px; color: rgba(25,23,18,.55); margin-right: 10px; font-family: Consolas, monospace; }
+
+  .zym_back { display: inline-block; margin-top: 18px; font-size: 13px; color: #B3271E; text-decoration: none; }
+  .zym_back:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <div class="zym_container">
+    <!-- 选项卡栏：国内新闻为默认选中 -->
+    <div class="zym_tabs" id="zym_news_tabs">
+      <button class="zym_tab zym_active" type="button" data-zym-tab="zym_panel_domestic">国内新闻</button>
+      <button class="zym_tab" type="button" data-zym-tab="zym_panel_world">国际新闻</button>
+      <button class="zym_tab" type="button" data-zym-tab="zym_panel_hot">最热新闻</button>
+    </div>
+
+    <!-- 面板一：国内新闻（默认显示） -->
+    <section class="zym_panel zym_active" id="zym_panel_domestic">
+      <h2>国内新闻</h2>
+      <ul class="zym_news-list">
+        <li><time>11-04</time>全国秋粮收获已过九成，丰收成定局</li>
+        <li><time>11-04</time>新一轮冷空气将影响中东部地区，局地降温可达 10℃</li>
+        <li><time>11-03</time>多条高铁新线开通运营，出行更加便捷</li>
+        <li><time>11-03</time>各地推进城市更新行动，改造老旧小区超 5 万个</li>
+      </ul>
+    </section>
+
+    <!-- 面板二：国际新闻 -->
+    <section class="zym_panel" id="zym_panel_world">
+      <h2>国际新闻</h2>
+      <ul class="zym_news-list">
+        <li><time>11-04</time>联合国气候变化大会即将开幕，各国代表陆续抵达</li>
+        <li><time>11-04</time>国际科研团队合作完成深海联合科考任务</li>
+        <li><time>11-03</time>多国央行发布最新利率决议，全球市场密切关注</li>
+        <li><time>11-02</time>世界数字贸易博览会海外参展商数量创新高</li>
+      </ul>
+    </section>
+
+    <!-- 面板三：最热新闻 -->
+    <section class="zym_panel" id="zym_panel_hot">
+      <h2>最热新闻</h2>
+      <ul class="zym_news-list">
+        <li><time>11-04</time>神舟新乘组进驻空间站，完成首次出舱准备</li>
+        <li><time>11-04</time>国产大飞机新增两条商业航线，上座率超九成</li>
+        <li><time>11-03</time>全国冬季运动场馆陆续开放，冰雪消费持续升温</li>
+        <li><time>11-03</time>人工智能辅助诊疗系统在多家三甲医院上线试点</li>
+      </ul>
+    </section>
+
+    <a class="zym_back" href="index.html">返回首页</a>
+  </div>
+
+  <!-- 外部引用 js 文件夹中的选项卡脚本 -->
+  <script src="js/tab-news.js"></script>
+</body>
+</html>

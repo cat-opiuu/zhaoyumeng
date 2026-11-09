@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f3f7ff">
+  <meta name="description" content="本地原生 HTML、CSS 与 JavaScript 实现的音乐发现首页。">
+  <title>音乐 · 猫猫的专属好歌</title>
+  <link rel="stylesheet" href="./css/music-my.css">
+  <script src="./js/my.js" defer></script>
+</head>
+<body>
+  <main class="zhao-app-shell">
+    <div class="zhao-statusbar" aria-label="系统状态栏"><span>13:54</span><span class="zhao-island" aria-hidden="true"><i></i></span><span class="zhao-status-icons">▮▮▮ 5G <b>71</b></span></div>
+    <header class="zhao-header">
+      <nav class="zhao-top-nav" id="zhao-top-nav" aria-label="音乐频道">
+        <button class="zhao-top-tab" type="button" data-channel="刷歌">刷歌</button><button class="zhao-top-tab zhao-is-active" type="button" data-channel="推荐" aria-current="page">推荐</button><button class="zhao-top-tab" type="button" data-channel="乐库">乐库</button><button class="zhao-top-tab" type="button" data-channel="听书">听书</button><button class="zhao-top-tab" type="button" data-channel="短剧">短剧</button><button class="zhao-top-tab zhao-top-extra" type="button" data-channel="儿童">儿</button>
+      </nav>
+      <button class="zhao-menu-button" id="zhao-menu-button" type="button" aria-label="打开菜单">☰</button>
+    </header>
+
+    <div class="zhao-search-row">
+      <form class="zhao-search" id="zhao-search-form" role="search"><span aria-hidden="true">⌕</span><input id="zhao-search-input" type="search" placeholder="黄龄 水为媒 新歌速递" autocomplete="off" aria-label="搜索歌曲、歌手或专辑"><button type="submit" aria-label="搜索">⛶</button></form>
+      <button class="zhao-voice-button" id="zhao-voice-button" type="button" aria-label="语音搜索">◉<small>♪</small></button>
+      <button class="zhao-reward-button" id="zhao-reward-button" type="button" aria-label="金币中心"><span>金币</span><b>🎁</b></button>
+    </div>
+
+    <section class="zhao-content" id="zhao-home">
+      <section class="zhao-member-strip" aria-label="会员快捷信息"><span class="zhao-avatar">喵</span><strong>猫猫</strong><span class="zhao-vip-badge">♫ VIP</span><span class="zhao-level-badge">戴</span><span class="zhao-level-badge">Y</span><button id="zhao-profile-button" type="button"><span>🔥</span> 解锁你的专属音色 <b>›</b></button></section>
+
+      <section class="zhao-feature-section" aria-label="精选推荐">
+        <div class="zhao-feature-track" id="zhao-carousel-track"><article class="zhao-feature-loading" aria-label="推荐内容加载中"></article></div>
+        <div class="zhao-carousel-dots" id="zhao-carousel-dots" aria-label="推荐卡片位置"></div>
+        <div class="zhao-feature-controls"><button id="zhao-carousel-prev" type="button" aria-label="向前浏览">‹</button><button id="zhao-carousel-next" type="button" aria-label="向后浏览">›</button></div>
+      </section>
+
+      <section class="zhao-playlist-section" aria-labelledby="zhao-playlist-title">
+        <div class="zhao-section-heading"><h1 id="zhao-playlist-title">猫猫的专属好歌</h1><button id="zhao-playlist-more" type="button" aria-label="更多歌单">••</button></div>
+        <div class="zhao-playlist-track-wrap"><ul class="zhao-song-list" id="zhao-song-list" aria-label="猫猫的专属好歌"></ul><div class="zhao-next-preview" aria-hidden="true"><img src="./assets/cover-coast.svg" alt=""></div></div>
+        <p class="zhao-results-status" id="zhao-results-status" aria-live="polite">正在为你挑选好歌…</p>
+      </section>
+
+      <section class="zhao-discover-section" aria-label="更多音乐内容"><h2>猜你喜欢 · 精选歌单</h2><div class="zhao-discover-strip" id="zhao-discover-strip"></div></section>
+    </section>
+
+    <aside class="zhao-player-bar" id="zhao-player-bar" aria-label="迷你播放器"><img class="zhao-player-cover" id="zhao-player-cover" src="./assets/cover-moon.svg" alt="当前歌曲封面"><div class="zhao-player-meta"><span class="zhao-player-title" id="zhao-player-title">晚风告白</span><span class="zhao-player-artist" id="zhao-player-artist">陈婧霏 · 酷狗音乐</span></div><div class="zhao-player-actions"><button class="zhao-player-heart" id="zhao-player-like" type="button" aria-label="收藏当前歌曲" aria-pressed="false">♡</button><button class="zhao-play-button" id="zhao-play-toggle" type="button" aria-label="播放" aria-pressed="false">▶</button><button class="zhao-queue-button" id="zhao-queue-button" type="button" aria-label="播放列表">☷</button></div><span class="zhao-player-progress" id="zhao-player-progress" aria-hidden="true"></span></aside>
+    <nav class="zhao-bottom-nav" id="zhao-bottom-nav" aria-label="底部导航"><button class="zhao-bottom-tab zhao-is-active" type="button" data-destination="首页" aria-current="page"><span>▣</span><small>首页</small></button><button class="zhao-bottom-tab" type="button" data-destination="直播"><span>▻</span><small>直播</small></button><button class="zhao-bottom-tab zhao-vip-tab" type="button" data-destination="会员专区"><span>V5</span><small>会员专区</small><i>免费权益</i></button><button class="zhao-bottom-tab" type="button" data-destination="福利"><span>¥</span><small>福利</small></button><button class="zhao-bottom-tab" type="button" data-destination="我的"><span>♙</span><small>我的</small></button></nav>
+  </main>
+  <div class="zhao-toast" id="zhao-toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>符印工坊 · 样张二「刻版」— Lucide</title>
+<!-- 本地 CDN：Lucide v1.61.0（SVG 方式，script 加载后内联展开） -->
+<script src="cdn/lucide/lucide.min.js"></script>
+<style>
+  :root {
+    --zym-paper: #F6F4EE;
+    --zym-text: #191712;
+    --zym-ink: #00694E;      /* 样张二：riso 绿墨 */
+    --zym-wash: #DFEDE4;
+    --zym-seal: #B3271E;     /* 印泥红（品牌贯穿色） */
+    --zym-hairline: rgba(25, 23, 18, 0.16);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--zym-paper);
+    color: var(--zym-text);
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    line-height: 1.7;
+  }
+  /* 裁切角线：印张四角 */
+  .zym_crop { position: fixed; width: 18px; height: 18px; pointer-events: none; z-index: 5; }
+  .zym_crop-tl { top: 10px; left: 10px; border-top: 1px solid var(--zym-seal); border-left: 1px solid var(--zym-seal); }
+  .zym_crop-tr { top: 10px; right: 10px; border-top: 1px solid var(--zym-seal); border-right: 1px solid var(--zym-seal); }
+  .zym_crop-bl { bottom: 10px; left: 10px; border-bottom: 1px solid var(--zym-seal); border-left: 1px solid var(--zym-seal); }
+  .zym_crop-br { bottom: 10px; right: 10px; border-bottom: 1px solid var(--zym-seal); border-right: 1px solid var(--zym-seal); }
+
+  .zym_page { max-width: 1120px; margin: 0 auto; padding: 40px 32px 0; }
+
+  /* 报头 */
+  .zym_top { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-bottom: 2px solid var(--zym-text); padding-bottom: 14px; }
+  .zym_brand { font-family: "Songti SC", "SimSun", serif; font-size: 30px; letter-spacing: 6px; }
+  .zym_brand small { font-size: 13px; letter-spacing: 2px; color: var(--zym-ink); margin-left: 10px; font-family: Consolas, monospace; }
+  .zym_top-links { font-size: 13px; }
+  .zym_top-links a { color: var(--zym-text); text-decoration: none; margin-left: 18px; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+  .zym_top-links a:hover { border-bottom-color: var(--zym-seal); }
+  .zym_top-links a.zym_here { color: var(--zym-seal); font-weight: bold; }
+
+  /* 主字形区 */
+  .zym_hero { display: flex; gap: 40px; align-items: flex-start; padding: 44px 0 36px; flex-wrap: wrap; }
+  .zym_hero-tile {
+    flex: 0 0 240px; height: 240px; background: var(--zym-wash);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; border: 1px solid var(--zym-hairline);
+  }
+  .zym_hero-tile svg { width: 150px; height: 150px; color: var(--zym-ink); }
+  .zym_hero-stamp {
+    position: absolute; right: -10px; bottom: -10px; width: 58px; height: 58px;
+    border: 2px solid var(--zym-seal); color: var(--zym-seal);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Songti SC", "SimSun", serif; font-size: 15px; letter-spacing: 2px;
+    transform: rotate(-7deg); background: var(--zym-paper); line-height: 1.2; text-align: center;
+  }
+  .zym_hero-body { flex: 1 1 380px; min-width: 300px; }
+  .zym_edition-title { font-family: "Songti SC", "SimSun", serif; font-size: 44px; font-weight: normal; line-height: 1.25; }
+  .zym_edition-title em { font-style: normal; color: var(--zym-ink); }
+  .zym_lede { margin-top: 14px; max-width: 34em; font-size: 15px; }
+
+  /* 技术档案 */
+  .zym_spec-table { margin-top: 22px; border-top: 1px solid var(--zym-text); font-size: 13.5px; max-width: 34em; }
+  .zym_spec-table dl { display: flex; border-bottom: 1px solid var(--zym-hairline); }
+  .zym_spec-table dt { flex: 0 0 6em; padding: 8px 0; color: var(--zym-ink); }
+  .zym_spec-table dd { flex: 1; padding: 8px 0; }
+  .zym_code { display: block; margin-top: 16px; font-family: Consolas, "Courier New", monospace; font-size: 13px; background: var(--zym-wash); padding: 12px 14px; overflow-x: auto; white-space: pre; }
+  .zym_code b { color: var(--zym-seal); font-weight: normal; }
+
+  /* 工具行 */
+  .zym_toolbar { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; padding: 16px 0; border-top: 2px solid var(--zym-text); }
+  .zym_search {
+    font: inherit; font-size: 14px; background: transparent; border: none;
+    border-bottom: 1px solid var(--zym-text); padding: 6px 2px; width: 220px; outline: none;
+  }
+  .zym_search:focus { border-bottom-color: var(--zym-ink); box-shadow: 0 1px 0 var(--zym-ink); }
+  .zym_slider { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+  .zym_slider input[type="range"] { accent-color: var(--zym-ink); }
+  .zym_slider-val { font-family: Consolas, monospace; color: var(--zym-ink); min-width: 3.5em; }
+  .zym_slider-note { font-size: 12px; opacity: .65; }
+
+  /* 样张分组 */
+  .zym_group { display: flex; gap: 18px; margin-bottom: 34px; }
+  .zym_group-label {
+    flex: 0 0 2.4em; writing-mode: vertical-rl; text-align: center;
+    font-family: "Songti SC", "SimSun", serif; font-size: 17px; letter-spacing: 8px;
+    color: var(--zym-ink); border-right: 1px solid var(--zym-text); padding-right: 10px;
+  }
+  .zym_group-grid { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 1px; background: var(--zym-hairline); border: 1px solid var(--zym-hairline); }
+  .zym_spec {
+    appearance: none; border: none; background: var(--zym-paper); cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    padding: 22px 8px 14px; font: inherit; color: var(--zym-text);
+  }
+  .zym_spec:hover, .zym_spec:focus-visible { background: var(--zym-wash); }
+  .zym_spec:focus-visible { outline: 2px solid var(--zym-seal); outline-offset: -2px; }
+  .zym_spec-icon { line-height: 1; transition: transform .15s ease; }
+  .zym_spec-icon svg { width: 34px; height: 34px; color: var(--zym-ink); display: block; }
+  .zym_spec:hover .zym_spec-icon { transform: translateY(-3px); }
+  .zym_spec-name { font-family: Consolas, monospace; font-size: 11.5px; color: var(--zym-text); opacity: .72; }
+
+  /* 复制回执 */
+  .zym_toast {
+    position: fixed; left: 50%; bottom: 34px; transform: translateX(-50%) translateY(16px);
+    background: var(--zym-paper); border: 2px solid var(--zym-seal); color: var(--zym-seal);
+    font-family: "Songti SC", "SimSun", serif; font-size: 14px; letter-spacing: 3px;
+    padding: 10px 22px; opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; z-index: 9;
+  }
+  .zym_toast.zym_on { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* 版权栏（印张信息） */
+  .zym_colophon { border-top: 2px solid var(--zym-text); margin-top: 10px; padding: 18px 0 46px; font-family: Consolas, monospace; font-size: 12px; color: var(--zym-text); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .zym_colophon a { color: var(--zym-seal); text-decoration: none; }
+  .zym_colophon a:hover { text-decoration: underline; }
+
+  /* 唯一的加载动效：主字形落印 */
+  @keyframes zym_stamp_in {
+    from { opacity: 0; transform: scale(1.55) rotate(4deg); }
+    to { opacity: 1; transform: scale(1) rotate(0); }
+  }
+  .zym_hero-tile svg { animation: zym_stamp_in .65s cubic-bezier(.2, .85, .3, 1.15) both; }
+  @media (prefers-reduced-motion: reduce) {
+    .zym_hero-tile svg { animation: none; }
+    .zym_spec-icon { transition: none; }
+  }
+  @media (max-width: 640px) {
+    .zym_page { padding: 28px 18px 0; }
+    .zym_group { flex-direction: column; gap: 8px; }
+    .zym_group-label { writing-mode: horizontal-tb; flex: none; border-right: none; border-bottom: 1px solid var(--zym-text); padding: 0 0 4px; text-align: left; letter-spacing: 6px; }
+  }
+</style>
+</head>
+<body>
+<span class="zym_crop zym_crop-tl"></span>
+<span class="zym_crop zym_crop-tr"></span>
+<span class="zym_crop zym_crop-bl"></span>
+<span class="zym_crop zym_crop-br"></span>
+
+<main id="zym_page" class="zym_page">
+  <header class="zym_top">
+    <div class="zym_brand">符印工坊<small>Glyph Atelier · 图标样张</small></div>
+    <nav class="zym_top-links">
+      <a href="index.html">返回首页</a>
+      <a href="iconfont-1.html">样张一 · 活字</a>
+      <a class="zym_here" href="iconfont-2.html" aria-current="page">样张二 · 刻版</a>
+    </nav>
+  </header>
+
+  <section class="zym_hero">
+    <div class="zym_hero-tile">
+      <i class="zym_hero-glyph" data-lucide="house" aria-hidden="true"></i>
+      <span class="zym_hero-stamp">第二版<br>刻版</span>
+    </div>
+    <div class="zym_hero-body">
+      <h1 class="zym_edition-title">样张二 · <em>刻版</em><br>Lucide 矢量图标（SVG）</h1>
+      <p class="zym_lede">
+        SVG 图标把每一笔刻进矢量路径。它不是文字，而是真正的图形对象：
+        描边可以调粗调细，随时改成多色，还能被脚本逐笔操控——
+        拖动下面的线宽滑杆，整套印版会当场重刻。
+      </p>
+      <div class="zym_spec-table">
+        <dl><dt>载体</dt><dd>XML 路径数据，随脚本内联进页面</dd></dl>
+        <dl><dt>引入</dt><dd>&lt;script&gt; 加载一份 JS，createIcons() 展开</dd></dl>
+        <dl><dt>渲染</dt><dd>矢量描边（stroke path），任意缩放不失真</dd></dl>
+        <dl><dt>着色</dt><dd>stroke / currentColor，支持多色与渐变</dd></dl>
+      </div>
+      <code class="zym_code">&lt;i data-lucide="house"&gt;&lt;/i&gt;
+   <b>↓ lucide.createIcons() 在 DOM 中展开为</b>
+&lt;svg class="lucide lucide-house" stroke-width="2"&gt;…&lt;path d="…"/&gt;&lt;/svg&gt;　<b>点击任意样张可复制写法</b></code>
+    </div>
+  </section>
+
+  <div class="zym_toolbar">
+    <input id="zym_search" class="zym_search" type="search" placeholder="检索图标名，如 house" aria-label="检索图标">
+    <label class="zym_slider">线宽
+      <input id="zym_stroke" type="range" min="0.5" max="3" step="0.25" value="2" aria-label="调整线宽，实时修改 SVG 属性">
+      <span class="zym_slider-val" id="zym_stroke_val">2</span>
+    </label>
+    <span class="zym_slider-note">实时改写每一个 SVG 的 stroke-width 属性——字体图标做不到的事</span>
+  </div>
+
+  <section class="zym_group">
+    <h2 class="zym_group-label">界面之器</h2>
+    <div class="zym_group-grid">
+      <button class="zym_spec" data-name="house" data-snippet='<i data-lucide="house"></i>'><span class="zym_spec-icon"><i data-lucide="house"></i></span><span class="zym_spec-name">house</span></button>
+      <button class="zym_spec" data-name="search" data-snippet='<i data-lucide="search"></i>'><span class="zym_spec-icon"><i data-lucide="search"></i></span><span class="zym_spec-name">search</span></button>
+      <button class="zym_spec" data-name="settings" data-snippet='<i data-lucide="settings"></i>'><span class="zym_spec-icon"><i data-lucide="settings"></i></span><span class="zym_spec-name">settings</span></button>
+      <button class="zym_spec" data-name="bell" data-snippet='<i data-lucide="bell"></i>'><span class="zym_spec-icon"><i data-lucide="bell"></i></span><span class="zym_spec-name">bell</span></button>
+      <button class="zym_spec" data-name="mail" data-snippet='<i data-lucide="mail"></i>'><span class="zym_spec-icon"><i data-lucide="mail"></i></span><span class="zym_spec-name">mail</span></button>
+      <button class="zym_spec" data-name="user" data-snippet='<i data-lucide="user"></i>'><span class="zym_spec-icon"><i data-lucide="user"></i></span><span class="zym_spec-name">user</span></button>
+      <button class="zym_spec" data-name="heart" data-snippet='<i data-lucide="heart"></i>'><span class="zym_spec-icon"><i data-lucide="heart"></i></span><span class="zym_spec-name">heart</span></button>
+      <button class="zym_spec" data-name="star" data-snippet='<i data-lucide="star"></i>'><span class="zym_spec-icon"><i data-lucide="star"></i></span><span class="zym_spec-name">star</span></button>
+      <button class="zym_spec" data-name="bookmark" data-snippet='<i data-lucide="bookmark"></i>'><span class="zym_spec-icon"><i data-lucide="bookmark"></i></span><span class="zym_spec-name">bookmark</span></button>
+      <button class="zym_spec" data-name="clock" data-snippet='<i data-lucide="clock"></i>'><span class="zym_spec-icon"><i data-lucide="clock"></i></span><span class="zym_spec-name">clock</span></button>
+    </div>
+  </section>
+
+  <section class="zym_group">
+    <h2 class="zym_group-label">艺文之器</h2>
+    <div class="zym_group-grid">
+      <button class="zym_spec" data-name="palette" data-snippet='<i data-lucide="palette"></i>'><span class="zym_spec-icon"><i data-lucide="palette"></i></span><span class="zym_spec-name">palette</span></button>
+      <button class="zym_spec" data-name="brush" data-snippet='<i data-lucide="brush"></i>'><span class="zym_spec-icon"><i data-lucide="brush"></i></span><span class="zym_spec-name">brush</span></button>
+      <button class="zym_spec" data-name="pen-tool" data-snippet='<i data-lucide="pen-tool"></i>'><span class="zym_spec-icon"><i data-lucide="pen-tool"></i></span><span class="zym_spec-name">pen-tool</span></button>
+      <button class="zym_spec" data-name="feather" data-snippet='<i data-lucide="feather"></i>'><span class="zym_spec-icon"><i data-lucide="feather"></i></span><span class="zym_spec-name">feather</span></button>
+      <button class="zym_spec" data-name="compass" data-snippet='<i data-lucide="compass"></i>'><span class="zym_spec-icon"><i data-lucide="compass"></i></span><span class="zym_spec-name">compass</span></button>
+      <button class="zym_spec" data-name="camera" data-snippet='<i data-lucide="camera"></i>'><span class="zym_spec-icon"><i data-lucide="camera"></i></span><span class="zym_spec-name">camera</span></button>
+      <button class="zym_spec" data-name="clapperboard" data-snippet='<i data-lucide="clapperboard"></i>'><span class="zym_spec-icon"><i data-lucide="clapperboard"></i></span><span class="zym_spec-name">clapperboard</span></button>
+      <button class="zym_spec" data-name="music" data-snippet='<i data-lucide="music"></i>'><span class="zym_spec-icon"><i data-lucide="music"></i></span><span class="zym_spec-name">music</span></button>
+      <button class="zym_spec" data-name="headphones" data-snippet='<i data-lucide="headphones"></i>'><span class="zym_spec-icon"><i data-lucide="headphones"></i></span><span class="zym_spec-name">headphones</span></button>
+      <button class="zym_spec" data-name="book-open" data-snippet='<i data-lucide="book-open"></i>'><span class="zym_spec-icon"><i data-lucide="book-open"></i></span><span class="zym_spec-name">book-open</span></button>
+    </div>
+  </section>
+
+  <section class="zym_group">
+    <h2 class="zym_group-label">自然之物</h2>
+    <div class="zym_group-grid">
+      <button class="zym_spec" data-name="leaf" data-snippet='<i data-lucide="leaf"></i>'><span class="zym_spec-icon"><i data-lucide="leaf"></i></span><span class="zym_spec-name">leaf</span></button>
+      <button class="zym_spec" data-name="flame" data-snippet='<i data-lucide="flame"></i>'><span class="zym_spec-icon"><i data-lucide="flame"></i></span><span class="zym_spec-name">flame</span></button>
+      <button class="zym_spec" data-name="zap" data-snippet='<i data-lucide="zap"></i>'><span class="zym_spec-icon"><i data-lucide="zap"></i></span><span class="zym_spec-name">zap</span></button>
+      <button class="zym_spec" data-name="mountain" data-snippet='<i data-lucide="mountain"></i>'><span class="zym_spec-icon"><i data-lucide="mountain"></i></span><span class="zym_spec-name">mountain</span></button>
+      <button class="zym_spec" data-name="umbrella" data-snippet='<i data-lucide="umbrella"></i>'><span class="zym_spec-icon"><i data-lucide="umbrella"></i></span><span class="zym_spec-name">umbrella</span></button>
+      <button class="zym_spec" data-name="snowflake" data-snippet='<i data-lucide="snowflake"></i>'><span class="zym_spec-icon"><i data-lucide="snowflake"></i></span><span class="zym_spec-name">snowflake</span></button>
+      <button class="zym_spec" data-name="sun" data-snippet='<i data-lucide="sun"></i>'><span class="zym_spec-icon"><i data-lucide="sun"></i></span><span class="zym_spec-name">sun</span></button>
+      <button class="zym_spec" data-name="moon" data-snippet='<i data-lucide="moon"></i>'><span class="zym_spec-icon"><i data-lucide="moon"></i></span><span class="zym_spec-name">moon</span></button>
+      <button class="zym_spec" data-name="cloud" data-snippet='<i data-lucide="cloud"></i>'><span class="zym_spec-icon"><i data-lucide="cloud"></i></span><span class="zym_spec-name">cloud</span></button>
+      <button class="zym_spec" data-name="sprout" data-snippet='<i data-lucide="sprout"></i>'><span class="zym_spec-icon"><i data-lucide="sprout"></i></span><span class="zym_spec-name">sprout</span></button>
+    </div>
+  </section>
+
+  <footer class="zym_colophon">
+    <span>印张来源：cdn/lucide/lucide.min.js · Lucide v1.61.0（ISC License）</span>
+    <span><a href="iconfont-1.html">看样张一「活字」→ 字体图标</a>　<a href="index.html">返回首页</a></span>
+  </footer>
+</main>
+
+<div id="zym_toast" class="zym_toast" role="status" aria-live="polite">已复制到剪贴板</div>
+
+<script>
+  (function () {
+    /* 先把所有 data-lucide 占位元素展开为内联 SVG */
+    lucide.createIcons();
+
+    var zym_query = document.getElementById('zym_search');
+    var zym_specs = Array.prototype.slice.call(document.querySelectorAll('.zym_spec'));
+    var zym_toastEl = document.getElementById('zym_toast');
+    var zym_toastTimer = null;
+    var zym_strokeCtl = document.getElementById('zym_stroke');
+    var zym_strokeVal = document.getElementById('zym_stroke_val');
+
+    function zym_copy(zym_text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(zym_text).catch(function () { zym_copy_fallback(zym_text); });
+      } else {
+        zym_copy_fallback(zym_text);
+      }
+    }
+    function zym_copy_fallback(zym_text) {
+      var zym_ta = document.createElement('textarea');
+      zym_ta.value = zym_text;
+      zym_ta.style.position = 'fixed';
+      zym_ta.style.opacity = '0';
+      document.body.appendChild(zym_ta);
+      zym_ta.select();
+      try { document.execCommand('copy'); } catch (zym_err) {}
+      document.body.removeChild(zym_ta);
+    }
+    function zym_showToast() {
+      zym_toastEl.classList.add('zym_on');
+      if (zym_toastTimer) clearTimeout(zym_toastTimer);
+      zym_toastTimer = setTimeout(function () { zym_toastEl.classList.remove('zym_on'); }, 1600);
+    }
+
+    zym_specs.forEach(function (zym_cell) {
+      zym_cell.addEventListener('click', function () {
+        zym_copy(zym_cell.getAttribute('data-snippet'));
+        zym_showToast();
+      });
+    });
+
+    zym_query.addEventListener('input', function () {
+      var zym_key = zym_query.value.trim().toLowerCase();
+      zym_specs.forEach(function (zym_cell) {
+        var zym_hit = zym_cell.getAttribute('data-name').indexOf(zym_key) !== -1;
+        zym_cell.style.display = zym_hit ? '' : 'none';
+      });
+    });
+
+    /* 刻版的本质演示：SVG 是 DOM 节点，属性可实时改写 */
+    zym_strokeCtl.addEventListener('input', function () {
+      var zym_svgs = document.querySelectorAll('#zym_page svg');
+      Array.prototype.forEach.call(zym_svgs, function (zym_svg) {
+        zym_svg.setAttribute('stroke-width', zym_strokeCtl.value);
+      });
+      zym_strokeVal.textContent = zym_strokeCtl.value;
+    });
+  })();
+</script>
+</body>
+</html>

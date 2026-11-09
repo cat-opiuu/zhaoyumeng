@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f7fb">
+  <meta name="description" content="原生 HTML、CSS 与 JavaScript 实现的音乐个人中心。">
+  <title>我的音乐空间</title>
+  <link rel="stylesheet" href="./css/music-account.css">
+  <script src="./js/account.js" defer></script>
+</head>
+<body>
+  <main class="zhao-account-shell">
+    <header class="zhao-account-header"><button class="zhao-back-button" id="zhao-back-button" type="button" aria-label="返回">‹</button><span>我的</span><button class="zhao-header-menu" id="zhao-header-menu" type="button" aria-label="更多选项">•••</button></header>
+    <section class="zhao-member-card" aria-label="会员信息">
+      <div class="zhao-member-topline"><div class="zhao-greeting"><span id="zhao-greeting">Hi, 猫猫</span><span class="zhao-vip-mark">♫ VIP</span></div><button class="zhao-entitlement-button" id="zhao-entitlement-button" type="button">查看特权</button></div>
+      <p class="zhao-member-subtitle" id="zhao-member-subtitle">超级VIP尊享纯粹高品质音质</p>
+      <button class="zhao-member-news" id="zhao-member-news" type="button"><span class="zhao-mini-avatar">♪</span><span id="zhao-member-news-text">宋雨琦27音分享会 北京站</span><b>›</b></button>
+      <span class="zhao-card-lines" aria-hidden="true"></span>
+    </section>
+    <section class="zhao-actions-grid" id="zhao-actions-grid" aria-label="常用工具"><div class="zhao-action-loading"></div><div class="zhao-action-loading"></div><div class="zhao-action-loading"></div><div class="zhao-action-loading"></div></section>
+    <section class="zhao-menu-section" aria-label="音乐设置与服务"><div class="zhao-menu-list" id="zhao-menu-list"><div class="zhao-menu-loading"></div></div></section>
+    <footer class="zhao-account-footer"><span>音乐，让生活更有声</span><span id="zhao-version-label"></span></footer>
+  </main>
+  <div class="zhao-overlay" id="zhao-overlay" hidden><section class="zhao-sheet" role="dialog" aria-modal="true" aria-labelledby="zhao-sheet-title"><div class="zhao-sheet-handle" aria-hidden="true"></div><div class="zhao-sheet-heading"><h2 id="zhao-sheet-title">快捷设置</h2><button id="zhao-sheet-close" type="button" aria-label="关闭">×</button></div><div class="zhao-sheet-content" id="zhao-sheet-content"></div></section></div>
+  <div class="zhao-toast" id="zhao-toast" role="status" aria-live="polite"></div>
+</body>
+</html>

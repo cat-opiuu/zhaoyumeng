@@ -1,0 +1,26 @@
+[
+  {
+    "eyebrow": "每日推荐 · 为你精选",
+    "title": "每日推荐",
+    "description": "听见今天的好心情",
+    "action": "立即收听",
+    "cover": "./assets/cover-sunrise.svg",
+    "theme": "sunrise"
+  },
+  {
+    "eyebrow": "猜你喜欢 · 热门歌单",
+    "title": "猜你喜欢",
+    "description": "沿着节拍，去吹一阵晚风",
+    "action": "打开歌单",
+    "cover": "./assets/cover-coast.svg",
+    "theme": "coast"
+  },
+  {
+    "eyebrow": "榜单 · 此刻热听",
+    "title": "排行榜",
+    "description": "本周新歌，收藏你的下一首爱歌",
+    "action": "听听新歌",
+    "cover": "./assets/cover-night.svg",
+    "theme": "night"
+  }
+]

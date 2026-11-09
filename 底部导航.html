@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>底部导航 Symbol图标版</title>
+    <!-- 第二步：通用CSS -->
+    <style>
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #ffffff;
+            font-family: system-ui, sans-serif;
+            padding-bottom: 70px;
+        }
+        /* 底部导航容器 */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+            background: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 0 10px;
+            border-top: 1px solid #eee;
+        }
+        /* 单个tab项 */
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 14px;
+            color: #333;
+            position: relative;
+            cursor: pointer;
+        }
+        .tab-item svg {
+            font-size: 28px;
+            margin-bottom: 4px;
+        }
+        /* 激活样式（我的为当前选中） */
+        .tab-item.active {
+            color: #2468eb;
+        }
+        /* 会员右上角小红标 */
+        .vip-tag {
+            position: absolute;
+            top: -10px;
+            right: -20px;
+            background-color: #ed4050;
+            color: #fff;
+            font-size: 12px;
+            padding: 2px 6px;
+            border-radius: 12px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <!-- 底部导航 -->
+    <nav class="tab-bar">
+        <div class="tab-item">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-fanzhizuiqian"></use>
+            </svg>
+            <span>首页</span>
+        </div>
+        <div class="tab-item">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-guankanzhibo"></use>
+            </svg>
+            <span>直播</span>
+        </div>
+        <div class="tab-item">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-vip1"></use>
+            </svg>
+            <span>会员专区</span>
+            <span class="vip-tag">免费权益</span>
+        </div>
+        <div class="tab-item">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-fuli"></use>
+            </svg>
+            <span>福利</span>
+        </div>
+        <div class="tab-item active">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-wode3-copy"></use>
+            </svg>
+            <span>我的</span>
+        </div>
+    </nav>
+    <script src="./font_1/iconfont.js"></script>
+</body>
+</html>

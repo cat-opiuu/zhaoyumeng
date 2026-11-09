@@ -1,0 +1,87 @@
+ <!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#fff8f0">
+  <meta name="description" content="原生 HTML、CSS 与 JavaScript 实现的移动音乐首页。">
+  <title>音乐 · 为你推荐</title>
+  <link rel="stylesheet" href="./css/music-home.css">
+  <script src="./js/app.js" defer></script>
+</head>
+<body>
+  <main class="zhao-app-shell">
+    <header class="zhao-header">
+      <div class="zhao-header-line">
+        <a class="zhao-brand" href="#zhao-home" aria-label="音乐首页">音乐</a>
+        <nav class="zhao-top-nav" id="zhao-top-nav" aria-label="音乐频道">
+          <button class="zhao-top-tab" type="button" data-channel="刷歌">刷歌</button>
+          <button class="zhao-top-tab zhao-is-active" type="button" data-channel="推荐" aria-current="page">推荐</button>
+          <button class="zhao-top-tab" type="button" data-channel="乐库">乐库</button>
+          <button class="zhao-top-tab" type="button" data-channel="听书">听书</button>
+          <button class="zhao-top-tab" type="button" data-channel="短剧">短剧</button>
+        </nav>
+        <form class="zhao-search" id="zhao-search-form" role="search">
+          <button class="zhao-search-icon" type="button" aria-label="展开搜索" onclick="this.closest('form').classList.add('zhao-is-open'); document.querySelector('#zhao-search-input').focus()">⌕</button>
+          <input id="zhao-search-input" type="search" placeholder="搜歌曲、歌手、专辑" autocomplete="off" aria-label="搜索歌曲、歌手或专辑">
+          <button class="zhao-search-submit" type="submit">搜索</button>
+        </form>
+      </div>
+    </header>
+
+    <section class="zhao-content" id="zhao-home">
+      <span class="zhao-visually-hidden" id="zhao-date-label"></span>
+      <section class="zhao-member-card" aria-label="会员中心">
+        <div class="zhao-member-topline">
+          <div class="zhao-avatar" aria-hidden="true">喵</div>
+          <div class="zhao-member-identity"><strong>猫猫</strong><span>乐龄第1个月 · 成长值 23536/38800</span></div>
+          <button class="zhao-member-entry" id="zhao-profile-button" type="button">金币中心 <span>›</span></button>
+        </div>
+        <div class="zhao-member-badges" aria-label="会员等级"><span>♫ VIP</span><span>戴</span><span>▱ Lv.9</span><span>♧ 勋章</span></div>
+        <div class="zhao-member-bottomline"><div><strong>会员中心</strong><span>解锁更多个性装扮与专属特权</span></div><button class="zhao-member-cta" type="button" data-shortcut="会员中心">查看</button></div>
+        <div class="zhao-member-stats"><span><strong>1282</strong> 小时 · 累计听歌</span><span>乐签 <small>稀有歌词卡免费抽</small>　›</span></div>
+      </section>
+
+      <section class="zhao-hero-section" aria-label="精选推荐">
+        <div class="zhao-section-kicker"><span>为你挑选的好音乐</span><button class="zhao-text-button" id="zhao-refresh-button" type="button">换一组 <span aria-hidden="true">↻</span></button></div>
+        <div class="zhao-carousel" id="zhao-carousel" aria-live="polite">
+          <div class="zhao-carousel-track" id="zhao-carousel-track"><article class="zhao-hero-card zhao-hero-loading" aria-label="推荐内容加载中"></article></div>
+          <div class="zhao-carousel-controls"><div class="zhao-carousel-dots" id="zhao-carousel-dots" aria-label="选择推荐卡片"></div><div class="zhao-carousel-arrows"><button class="zhao-icon-button" id="zhao-carousel-prev" type="button" aria-label="上一张">‹</button><button class="zhao-icon-button" id="zhao-carousel-next" type="button" aria-label="下一张">›</button></div></div>
+        </div>
+      </section>
+
+      <section class="zhao-shortcuts-section" aria-label="音乐快捷入口">
+        <div class="zhao-shortcuts-grid" id="zhao-shortcuts-grid"><div class="zhao-shortcut-loading" aria-label="快捷入口加载中"></div><div class="zhao-shortcut-loading" aria-hidden="true"></div><div class="zhao-shortcut-loading" aria-hidden="true"></div><div class="zhao-shortcut-loading" aria-hidden="true"></div></div>
+      </section>
+
+      <section class="zhao-recent-section" aria-labelledby="zhao-recent-title">
+        <div class="zhao-section-heading"><h1 id="zhao-recent-title">最近播放</h1><button class="zhao-more-button" type="button" data-shortcut="最近播放" aria-label="查看最近播放">›</button></div>
+        <div class="zhao-recent-strip">
+          <button class="zhao-recent-card" type="button" data-shortcut="单曲 薛之谦"><span class="zhao-recent-art"><img src="./assets/cover-moon.svg" alt=""><small>单曲</small><span aria-hidden="true">▶</span></span><strong>单曲 791</strong></button>
+          <button class="zhao-recent-card" type="button" data-shortcut="歌单 汪苏泷"><span class="zhao-recent-art"><img src="./assets/cover-coast.svg" alt=""><small>歌单</small><span aria-hidden="true">▶</span></span><strong>汪苏泷</strong></button>
+          <button class="zhao-recent-card" type="button" data-shortcut="歌手 林俊杰"><span class="zhao-recent-art"><img src="./assets/cover-night.svg" alt=""><small>歌手</small><span aria-hidden="true">▶</span></span><strong>林俊杰</strong></button>
+          <button class="zhao-recent-card" type="button" data-shortcut="歌手 薛之谦"><span class="zhao-recent-art"><img src="./assets/cover-sunrise.svg" alt=""><small>歌手</small><span aria-hidden="true">▶</span></span><strong>薛之谦</strong></button>
+        </div>
+      </section>
+
+      <section class="zhao-songs-section" aria-labelledby="zhao-songs-title">
+        <div class="zhao-section-heading zhao-song-heading"><h2 id="zhao-songs-title">歌单 <span>13</span></h2><div class="zhao-song-tools"><button class="zhao-list-filter zhao-is-active" type="button" data-shortcut="自建歌单">自建 5</button><button class="zhao-list-filter" type="button" data-shortcut="收藏歌单">收藏</button><button class="zhao-list-filter" type="button" data-shortcut="最近歌单">最近 8</button><button class="zhao-play-all" id="zhao-play-all" type="button" aria-label="播放全部">▶</button><button class="zhao-add-button" type="button" data-shortcut="新建歌单" aria-label="新建歌单">＋</button></div></div>
+        <div class="zhao-playlist-heading"><img src="./assets/cover-coast.svg" alt="我的歌单封面"><div><strong>我的歌单1</strong><span>1首</span></div><button class="zhao-more-button" type="button" data-shortcut="歌单设置" aria-label="歌单选项">⋮</button></div>
+        <p class="zhao-results-status" id="zhao-results-status" aria-live="polite">正在为你准备好歌…</p>
+        <ul class="zhao-song-list" id="zhao-song-list" aria-label="推荐歌曲"></ul>
+      </section>
+    </section>
+
+    <aside class="zhao-player-bar" id="zhao-player-bar" aria-label="迷你播放器">
+      <img class="zhao-player-cover" id="zhao-player-cover" src="./assets/cover-moon.svg" alt="当前歌曲封面">
+      <div class="zhao-player-meta"><span class="zhao-player-title" id="zhao-player-title">晚风告白</span><span class="zhao-player-artist" id="zhao-player-artist">陈婧霏 · 酷狗音乐</span></div>
+      <div class="zhao-player-actions"><button class="zhao-icon-button zhao-player-heart" id="zhao-player-like" type="button" aria-label="收藏当前歌曲" aria-pressed="false">♡</button><button class="zhao-play-button" id="zhao-play-toggle" type="button" aria-label="播放" aria-pressed="false"><span aria-hidden="true">▶</span></button><button class="zhao-icon-button zhao-queue-button" id="zhao-queue-button" type="button" aria-label="播放列表">☷</button></div>
+      <span class="zhao-player-progress" id="zhao-player-progress" aria-hidden="true"></span>
+    </aside>
+    <nav class="zhao-bottom-nav" id="zhao-bottom-nav" aria-label="底部导航">
+      <button class="zhao-bottom-tab zhao-is-active" type="button" data-destination="首页" aria-current="page"><span aria-hidden="true">⌂</span><small>首页</small></button><button class="zhao-bottom-tab" type="button" data-destination="直播"><span aria-hidden="true">◉</span><small>直播</small></button><button class="zhao-bottom-tab" type="button" data-destination="会员专区"><span aria-hidden="true">♢</span><small>会员专区</small></button><button class="zhao-bottom-tab" type="button" data-destination="福利"><span aria-hidden="true">✳</span><small>福利</small></button><button class="zhao-bottom-tab" type="button" data-destination="我的"><span aria-hidden="true">○</span><small>我的</small></button>
+    </nav>
+  </main>
+  <div class="zhao-toast" id="zhao-toast" role="status" aria-live="polite"></div>
+</body>
+</html>                                 

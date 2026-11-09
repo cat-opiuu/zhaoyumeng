@@ -5,6 +5,7 @@ zym-stocktab/
 .vscode/
 .trae-html-share-packages/
 .trae/skills/
+.screenshots/
 
 # Swiper 官方库本地副本（页面使用 CDN，不入库）
 swiper/

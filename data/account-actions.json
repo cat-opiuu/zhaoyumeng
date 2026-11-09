@@ -1,0 +1,6 @@
+[
+  { "icon": "◉", "title": "听歌识曲", "action": "recognize" },
+  { "icon": "◷", "title": "定时关闭", "action": "timer" },
+  { "icon": "▣", "title": "扫一扫", "action": "scan" },
+  { "icon": "⬡", "title": "设置", "action": "settings" }
+]

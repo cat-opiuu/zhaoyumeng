@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据类型与运算符</title>
+    <style>
+        div {
+            width: 180px;
+            height: 180px;
+            background-color:red;
+            margin: 10px;
+            color: white;
+            text-align: center;
+            line-height: 180px;
+            font-size: 100px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+   
+    <script>
+        var a = 6;
+        var b = 1;
+        console.log(a + b);
+        console.log(a++,++b);
+        console.log(a-b>0?a:b);
+        console.log(true&&false,true||false,!true);
+        var str="hello world",num=123,bl=true,obj={name:"张三",age:18},ur,kong=null;
+        console.log(typeof str,typeof num,typeof bl,typeof obj,typeof ur,typeof kong);
+        console.log(0.1+0.2==0.3);
+        //JS不能用==或者===来判断两个浮点数是否相等，因为浮点数在计算机中是以二进制形式存储的，可能会出现精度问题。
+        //数据类型转换：+号的时候将数字转换成字符串，-只能用于数值运算
+        console.log(1+"1","1"-1,"11"+1-1);
+        console.log("wangyao"-1);
+        //NaN:not a Number,不是一个数字，表示一个非数值类型的值,它与任何变量都不想等，包括他自己
+        console.log(isNaN(NaN));
+        console.log(NaN==NaN,null==null);
+        //parseInt()是取整向下取整
+        console.log(parseInt(123.79));
+        var num = 123;
+        console.log(num==parseInt(num));
+        //parseInt()函数的第二个参数进制数
+        console.log(parseInt("100.16"));
+        // 1-100求和
+        var sum = 0;
+        for(var i=1;i<=100;i++){
+            sum+=i;
+        }
+        // 数7，（7的倍数，最大到99，个位是7，或者十位是7，不显示数字）
+        for(var i=1;i<99;i++){
+            if(i%7==0||i%10==7||parseInt(i/10)==7){
+                document.write("<div></div>");
+            }
+            else{
+                document.write("<div>"+i+"</div>");
+            }
+        }
+        //课后练习：回文数显示11，22，33，44，55，66，77，88，99
+        for(var i=1;i<100;i++){
+            if(i%11==0){
+                document.write("<div>"+i+"</div>");
+            }
+            else{
+                document.write("<div></div>");
+            }
+        }
+
+    </script>
+</body>
+</html>

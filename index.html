@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>赵予萌的《高级网页设计》课堂实践</title>
+  <style>
+    :root {
+      --bg1: #f5f7ff;
+      --bg2: #eef8ff;
+      --panel: rgba(255, 255, 255, 0.9);
+      --panel-strong: #ffffff;
+      --line: rgba(120, 135, 255, 0.2);
+      --text: #1f2940;
+      --muted: #68738d;
+      --primary: #5b6bff;
+      --primary-strong: #4052ea;
+      --secondary: #6ad7d1;
+      --accent: #ffb86c;
+      --shadow: 0 18px 45px rgba(53, 72, 160, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(120, 140, 255, 0.18), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(106, 215, 209, 0.18), transparent 30%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+    }
+
+    .page-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 48px auto;
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 26px 22px 12px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(91, 107, 255, 0.1), rgba(106, 215, 209, 0.12));
+      border: 1px solid rgba(91, 107, 255, 0.12);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: var(--primary-strong);
+      background: rgba(91, 107, 255, 0.08);
+      border: 1px solid rgba(91, 107, 255, 0.18);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      line-height: 1.2;
+      letter-spacing: 0.04em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+    }
+
+    .content {
+      display: grid;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 10px 25px rgba(58, 71, 111, 0.04);
+    }
+
+    .panel h2 {
+      margin: 0 0 18px;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .module-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .module-card {
+      position: relative;
+      flex: 1 1 260px;
+      min-height: 200px;
+      padding: 24px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--text);
+      background: linear-gradient(135deg, #ffffff, #f6f8ff);
+      border: 1px solid rgba(91, 107, 255, 0.12);
+      border-radius: 18px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      overflow: hidden;
+    }
+
+    .module-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    .module-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 28px rgba(94, 110, 255, 0.14);
+      border-color: rgba(91, 107, 255, 0.24);
+    }
+
+    .module-card .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(91, 107, 255, 0.12), rgba(106, 215, 209, 0.18));
+      color: var(--primary-strong);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .module-card h3 {
+      margin: 18px 0 10px;
+      font-size: 1.5rem;
+    }
+
+    .module-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.98rem;
+    }
+
+    .module-card.coming-soon {
+      opacity: 0.82;
+      background: linear-gradient(135deg, #fffdf8, #fff7f2);
+    }
+
+    .module-card.coming-soon::before {
+      background: linear-gradient(90deg, var(--accent), #ffdd9a);
+    }
+
+    .module-card.coming-soon .tag {
+      background: linear-gradient(135deg, rgba(255, 184, 108, 0.18), rgba(255, 221, 154, 0.2));
+      color: #a66b12;
+    }
+
+    .links-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .links-list li {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(244, 247, 255, 0.9);
+      overflow: hidden;
+    }
+
+    .links-list a {
+      display: block;
+      padding: 18px 18px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .links-list a:hover {
+      background: linear-gradient(135deg, rgba(91, 107, 255, 0.08), rgba(106, 215, 209, 0.1));
+      transform: translateX(2px);
+    }
+
+    .prompt-box {
+      background: linear-gradient(135deg, rgba(91, 107, 255, 0.06), rgba(106, 215, 209, 0.06));
+      border: 1px solid rgba(91, 107, 255, 0.14);
+      border-radius: 16px;
+      padding: 18px 20px;
+    }
+
+    blockquote {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text);
+    }
+
+    .meta {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 640px) {
+      .page-shell {
+        width: min(100% - 18px, 1180px);
+        padding: 18px;
+        margin: 18px auto;
+      }
+
+      .hero,
+      .panel {
+        border-radius: 18px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .module-card {
+        min-height: 170px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="badge">Advanced Web Design</div>
+      <h1>赵予萌的《高级网页设计》课堂实践</h1>
+      <p class="subtitle">课堂目录与页面案例导航，持续更新中。</p>
+    </header>
+
+    <main class="content">
+      <section class="panel">
+        <h2>课堂目录</h2>
+        <div class="module-grid">
+          <a class="module-card" href="./cat.html">
+            <span class="tag">01</span>
+            <div>
+              <h3>Flex复习</h3>
+              <p>导航栏、三栏布局、响应式卡片与侧边栏结构实战演练。</p>
+            </div>
+          </a>
+
+          <a class="module-card" href="./svg005.html">
+            <span class="tag">02</span>
+            <div>
+              <h3>字体图标</h3>
+              <p>SVG 图标与图标切换效果的展示与交互练习。</p>
+            </div>
+          </a>
+
+          <a class="module-card" href="./tab-news.html">
+            <span class="tag">03</span>
+            <div>
+              <h3>选项卡组件</h3>
+              <p>国内/国际/最热新闻选项卡，JS 外部引用、可复用切换逻辑。</p>
+            </div>
+          </a>
+
+          <a class="module-card" href="./swiper-task.html">
+            <span class="tag">04</span>
+            <div>
+              <h3>Swiper轮播任务</h3>
+              <p>大国重器光影展：轮播初始化、循环播放与切换效果实战。</p>
+            </div>
+          </a>
+
+          <a class="module-card" href="./datatype.html">
+            <span class="tag">05</span>
+            <div>
+              <h3>JS数据类型</h3>
+              <p>数据类型与运算符的基础练习页面。</p>
+            </div>
+          </a>
+
+          <a class="module-card" href="./function005.html">
+            <span class="tag">06</span>
+            <div>
+              <h3>JS函数</h3>
+              <p>函数的定义、参数与调用方式练习。</p>
+            </div>
+          </a>
+
+          <a class="module-card" href="./function_apply.html">
+            <span class="tag">07</span>
+            <div>
+              <h3>函数方法应用</h3>
+              <p>抓小球游戏：函数三种调用方法（call/apply/bind）实战。</p>
+            </div>
+          </a>
+
+          <a class="module-card" href="./js_boj_apply.html">
+            <span class="tag">08</span>
+            <div>
+              <h3>JS对象应用</h3>
+              <p>对象的创建、属性与方法的应用练习。</p>
+            </div>
+          </a>
+
+          <a class="module-card" href="./gs_obj_fun005.html">
+            <span class="tag">09</span>
+            <div>
+              <h3>事件机制</h3>
+              <p>事件的冒泡与捕获过程演示。</p>
+            </div>
+          </a>
+
+          <a class="module-card" href="./iconfont-1.html">
+            <span class="tag">10</span>
+            <div>
+              <h3>字体图标·活字</h3>
+              <p>Font Awesome 字体图标艺术样张（本地 CDN）。</p>
+            </div>
+          </a>
+
+          <a class="module-card" href="./iconfont-2.html">
+            <span class="tag">11</span>
+            <div>
+              <h3>SVG图标·刻版</h3>
+              <p>Lucide SVG 图标艺术样张（本地 CDN）。</p>
+            </div>
+          </a>
+
+          <a class="module-card" href="./zym-stocktab/index.html">
+            <span class="tag">12</span>
+            <div>
+              <h3>股票行情选项卡</h3>
+              <p>四页签切换行情数据，一比一还原课堂设计图。</p>
+            </div>
+          </a>
+
+          <div class="module-card coming-soon">
+            <span class="tag">13</span>
+            <div>
+              <h3>其余模块</h3>
+              <p>后续课程内容将继续补充，欢迎持续关注课堂更新。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>本目录中的网页链接</h2>
+        <ul class="links-list">
+          <li><a href="./cat.html">Flex复习 - cat.html</a></li>
+          <li><a href="./svg005.html">字体图标 - svg005.html</a></li>
+          <li><a href="./font/demo_index.html">字体图标演示页 - font/demo_index.html</a></li>
+          <li><a href="./tab-news.html">选项卡组件 - tab-news.html</a></li>
+          <li><a href="./swiper-task.html">Swiper轮播任务 - swiper-task.html</a></li>
+          <li><a href="./datatype.html">JS数据类型 - datatype.html</a></li>
+          <li><a href="./function005.html">JS函数 - function005.html</a></li>
+          <li><a href="./function_apply.html">函数方法应用·抓小球 - function_apply.html</a></li>
+          <li><a href="./js_boj_apply.html">JS对象应用 - js_boj_apply.html</a></li>
+          <li><a href="./gs_obj_fun005.html">事件冒泡与捕获 - gs_obj_fun005.html</a></li>
+          <li><a href="./iconfont-1.html">Font Awesome字体图标 - iconfont-1.html</a></li>
+          <li><a href="./iconfont-2.html">Lucide SVG图标 - iconfont-2.html</a></li>
+          <li><a href="./zym-stocktab/index.html">股票行情选项卡 - zym-stocktab/index.html</a></li>
+        </ul>
+      </section>
+
+      <section class="panel">
+        <h2>本提示词</h2>
+        <div class="prompt-box">
+          <blockquote>
+            创建一个新页面，包括本目录下的所有网页的超链接，使用原生代码，不使用cdn，新页面名称为index.html，主题为赵予萌的《高级网页设计》课堂实践，美化页面，课堂目录中包含flex复习、字体图标、其余模块后续在增加。页面中包括本提示词。
+          </blockquote>
+        </div>
+        <div class="meta">更新日期：2026-09-11</div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

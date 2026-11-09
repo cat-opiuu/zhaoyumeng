@@ -1,0 +1,161 @@
+:root {
+  color-scheme: light;
+  --zhao-ink: #29241f;
+  --zhao-muted: #928981;
+  --zhao-paper: #fffaf5;
+  --zhao-coral: #ed5d58;
+  --zhao-line: #eee8e2;
+  font-family: "Avenir Next", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--zhao-ink);
+  background: var(--zhao-paper);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+* { box-sizing: border-box; }
+html { min-width: 320px; scroll-behavior: smooth; }
+body { margin: 0; min-height: 100vh; background: #fff; }
+button, input { font: inherit; }
+button { color: inherit; cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--zhao-coral); outline-offset: 2px; }
+.zhao-app-shell { width: min(100%, 520px); min-height: 100vh; margin: 0 auto; padding-bottom: 142px; overflow: hidden; background: #fff; }
+.zhao-header { position: relative; z-index: 2; padding: max(7px, env(safe-area-inset-top)) 20px 10px; background: #fffaf5; }
+.zhao-header-line { display: flex; height: 40px; align-items: center; gap: 16px; }
+.zhao-brand { flex: 0 0 auto; color: var(--zhao-ink); font-size: 18px; font-weight: 800; text-decoration: none; }
+.zhao-top-nav { display: flex; min-width: 0; flex: 1; align-items: center; justify-content: space-between; gap: 13px; overflow-x: auto; scrollbar-width: none; }
+.zhao-top-nav::-webkit-scrollbar { display: none; }
+.zhao-top-tab { position: relative; flex: 0 0 auto; padding: 7px 0; border: 0; background: transparent; color: #6f6861; font-size: 13px; white-space: nowrap; }
+.zhao-top-tab.zhao-is-active { color: var(--zhao-ink); font-weight: 750; }
+.zhao-top-tab.zhao-is-active::after { position: absolute; right: 4px; bottom: 0; left: 4px; height: 2px; border-radius: 2px; background: #3575ce; content: ""; }
+.zhao-search { position: relative; display: flex; width: 31px; height: 32px; flex: 0 0 31px; align-items: center; gap: 8px; padding: 0 4px; overflow: hidden; border: 0; border-radius: 7px; background: transparent; transition: width .2s,background .2s; }
+.zhao-search.zhao-is-open, .zhao-search:focus-within { position: absolute; z-index: 4; right: 20px; left: 20px; width: auto; padding: 0 9px; border: 1px solid #f0e9e2; background: #fffdfa; box-shadow: 0 3px 12px #38291c12; }
+.zhao-search-icon { display: grid; width: 24px; height: 28px; flex: 0 0 24px; place-items: center; padding: 0; border: 0; background: transparent; color: #302d29; font-size: 24px; line-height: 1; }
+.zhao-search input { width: 0; min-width: 0; flex: 1; padding: 0; border: 0; outline: 0; background: transparent; color: var(--zhao-ink); font-size: 11px; opacity: 0; }
+.zhao-search.zhao-is-open input, .zhao-search:focus-within input { width: 100%; opacity: 1; }
+.zhao-search input::placeholder { color: #a49a92; }
+.zhao-search-submit { display: none; flex: 0 0 auto; padding: 4px 6px; border: 0; background: transparent; color: #68615b; font-size: 10px; }
+.zhao-search.zhao-is-open .zhao-search-submit, .zhao-search:focus-within .zhao-search-submit { display: block; }
+.zhao-content { padding: 5px 20px 24px; }
+.zhao-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; clip-path: inset(50%); }
+.zhao-member-card { position: relative; padding: 10px 14px 9px; overflow: hidden; border-radius: 8px; background: linear-gradient(112deg,#f5d3a9 0%,#fae8ce 48%,#f9f3e7 100%); }
+.zhao-member-card::after { position: absolute; top: 78px; right: -25px; width: 180px; height: 95px; border-radius: 50%; background: repeating-linear-gradient(0deg,transparent 0 6px,rgba(255,255,255,.25) 7px 8px); content: ""; pointer-events: none; }
+.zhao-member-topline { position: relative; z-index: 1; display: flex; align-items: center; gap: 9px; }
+.zhao-avatar { display: grid; width: 47px; height: 47px; flex: 0 0 auto; place-items: center; border: 2px solid #ffffffdd; border-radius: 50%; background: radial-gradient(circle at 35% 30%,#e6d2b6,#74634b 68%,#332d28); box-shadow: 0 2px 8px #9f795844; color: #fff5de; font-size: 16px; font-weight: 800; }
+.zhao-member-identity { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 4px; }
+.zhao-member-identity strong { font-size: 14px; }
+.zhao-member-identity span { overflow: hidden; color: #79675a; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.zhao-member-entry { display: flex; align-items: center; gap: 8px; padding: 5px 0 5px 9px; border: 0; border-left: 1px solid #cf9e6e; background: transparent; color: #63472e; font-size: 10px; white-space: nowrap; }
+.zhao-member-entry span { font-size: 15px; }
+.zhao-member-badges { display: flex; gap: 6px; margin: 7px 0 7px 3px; }
+.zhao-member-badges span { padding: 2px 6px; border: 1px solid #a0723c55; border-radius: 3px; background: rgba(255,250,235,.7); color: #956b32; font-size: 8px; font-weight: 750; }
+.zhao-member-bottomline { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; padding-top: 7px; border-top: 1px solid #93714f2a; }
+.zhao-member-bottomline > div { display: flex; flex-direction: column; gap: 4px; }
+.zhao-member-bottomline strong { font-size: 13px; }
+.zhao-member-bottomline span { color: #8e7d6d; font-size: 9px; }
+.zhao-member-cta { padding: 6px 14px; border: 0; border-radius: 3px; background: #79543a; color: #fff; font-size: 10px; }
+.zhao-member-stats { display: flex; justify-content: space-between; gap: 8px; margin-top: 7px; padding: 6px 2px 0; border-top: 1px solid #93714f2a; color: #655b52; font-size: 9px; }
+.zhao-member-stats strong { margin-right: 4px; color: #28241f; font-size: 16px; }
+.zhao-member-stats small { color: #897d70; font-size: 8px; }
+.zhao-hero-section { padding-top: 17px; }
+.zhao-section-kicker { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; color: #514a44; font-size: 12px; font-weight: 750; }
+.zhao-text-button { padding: 3px 0; border: 0; background: transparent; color: #8c8178; font-size: 10px; }
+.zhao-text-button span { color: #4380d5; font-size: 15px; }
+.zhao-carousel { position: relative; }
+.zhao-carousel-track { display: grid; grid-auto-columns: 100%; grid-auto-flow: column; gap: 10px; overflow: hidden; border-radius: 7px; }
+.zhao-hero-card { position: relative; display: flex; min-height: 124px; align-items: flex-end; padding: 12px 14px; overflow: hidden; isolation: isolate; background-color: #bc7d5d; background-position: center 45%; background-size: cover; color: white; }
+.zhao-hero-card::before { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg,rgba(35,32,30,.58),rgba(35,32,30,.02)); content: ""; }
+.zhao-hero-card[data-theme="coast"]::before { background: linear-gradient(90deg,rgba(19,54,61,.60),rgba(19,54,61,.03)); }
+.zhao-hero-card[data-theme="night"]::before { background: linear-gradient(90deg,rgba(36,33,63,.66),rgba(36,33,63,.03)); }
+.zhao-hero-copy { max-width: 76%; }
+.zhao-hero-eyebrow { margin: 0 0 5px; color: #ffffffd6; font-size: 8px; font-weight: 750; }
+.zhao-hero-title { margin: 0; color: #fff; font-size: 20px; font-weight: 800; line-height: 1.3; white-space: pre-line; }
+.zhao-hero-description { margin: 5px 0 8px; color: #ffffffdf; font-size: 9px; }
+.zhao-hero-action { padding: 5px 9px; border: 1px solid #ffffff8c; border-radius: 3px; background: #ffffff22; color: white; font-size: 9px; backdrop-filter: blur(5px); }
+.zhao-hero-action span { margin-left: 5px; }
+.zhao-carousel-controls { display: flex; height: 23px; align-items: center; justify-content: space-between; padding: 0 2px; }
+.zhao-carousel-dots, .zhao-carousel-arrows { display: flex; align-items: center; gap: 4px; pointer-events: auto; }
+.zhao-carousel-dot { width: 5px; height: 5px; padding: 0; border: 0; border-radius: 5px; background: #ffffff99; }
+.zhao-carousel-dot.zhao-is-active { width: 14px; background: #fff; }
+.zhao-icon-button { display: grid; width: 28px; height: 28px; place-items: center; border: 0; border-radius: 50%; background: transparent; color: #554b43; font-size: 23px; line-height: 1; }
+.zhao-carousel-arrows .zhao-icon-button { width: 22px; height: 22px; background: #f5f1ec; color: #71685f; font-size: 18px; }
+.zhao-shortcuts-section { padding-top: 8px; }
+.zhao-shortcuts-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 6px; }
+.zhao-shortcut { display: flex; min-width: 0; align-items: center; flex-direction: column; padding: 3px 2px; border: 0; background: transparent; }
+.zhao-shortcut-icon { display: grid; width: 30px; height: 30px; place-items: center; margin-bottom: 4px; color: #4088dd; font-size: 22px; font-weight: 700; }
+.zhao-shortcut:nth-child(1) .zhao-shortcut-icon { color: #ed666c; }
+.zhao-shortcut:nth-child(3) .zhao-shortcut-icon { color: #4784d0; }
+.zhao-shortcut:nth-child(4) .zhao-shortcut-icon { color: #3584d9; }
+.zhao-shortcut-title { max-width: 100%; overflow: hidden; color: #38332f; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.zhao-shortcut-subtitle { margin-top: 2px; color: #a49a92; font-size: 8px; }
+.zhao-recent-section { padding-top: 17px; }
+.zhao-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.zhao-section-heading h1, .zhao-section-heading h2 { margin: 0; font-size: 15px; font-weight: 760; }
+.zhao-more-button { width: 24px; height: 26px; padding: 0; border: 0; background: transparent; color: #90877f; font-size: 23px; line-height: 1; }
+.zhao-recent-strip { display: grid; grid-auto-columns: 116px; grid-auto-flow: column; gap: 8px; margin: 9px -20px 0; padding: 0 20px 2px; overflow-x: auto; scrollbar-width: none; }
+.zhao-recent-strip::-webkit-scrollbar { display: none; }
+.zhao-recent-card { display: flex; min-width: 0; flex-direction: column; gap: 5px; padding: 0; border: 0; background: transparent; text-align: left; }
+.zhao-recent-art { position: relative; display: block; height: 80px; overflow: hidden; border-radius: 5px; background: #e8e0d8; }
+.zhao-recent-art img { width: 100%; height: 100%; object-fit: cover; }
+.zhao-recent-art small { position: absolute; top: 4px; left: 5px; padding: 2px 4px; border-radius: 2px; background: #282521aa; color: white; font-size: 8px; }
+.zhao-recent-art > span { position: absolute; right: 5px; bottom: 5px; color: white; font-size: 12px; text-shadow: 0 1px 3px #222; }
+.zhao-recent-card strong { overflow: hidden; font-size: 10px; font-weight: 550; text-overflow: ellipsis; white-space: nowrap; }
+.zhao-songs-section { padding-top: 18px; }
+.zhao-song-heading { align-items: center; }
+.zhao-song-heading h2 span { color: #90877f; font-size: 11px; font-weight: 500; }
+.zhao-song-tools { display: flex; align-items: center; gap: 6px; }
+.zhao-list-filter { padding: 5px 8px; border: 0; border-radius: 14px; background: #f6f3f0; color: #817871; font-size: 9px; white-space: nowrap; }
+.zhao-list-filter.zhao-is-active { background: #eaf1fb; color: #3478d1; }
+.zhao-play-all { display: grid; width: 24px; height: 24px; place-items: center; padding: 0; border: 0; background: transparent; color: #6f6861; font-size: 11px; }
+.zhao-add-button { width: 25px; height: 25px; margin-left: 2px; border: 0; background: transparent; color: #77716b; font-size: 20px; }
+.zhao-playlist-heading { display: flex; align-items: center; gap: 9px; margin-top: 12px; }
+.zhao-playlist-heading > img { width: 48px; height: 48px; border-radius: 5px; object-fit: cover; }
+.zhao-playlist-heading > div { display: flex; flex: 1; flex-direction: column; gap: 4px; }
+.zhao-playlist-heading strong { font-size: 12px; }
+.zhao-playlist-heading span { color: #958b83; font-size: 9px; }
+.zhao-results-status { min-height: 12px; margin: 5px 0 0; color: #a49a92; font-size: 9px; }
+.zhao-song-list { display: grid; gap: 1px; margin: 2px 0 0; padding: 0; list-style: none; }
+.zhao-song-row { display: grid; grid-template-columns: 42px minmax(0,1fr) 34px 27px; align-items: center; gap: 9px; min-height: 57px; animation: zhao-rise-in .3s ease both; }
+.zhao-song-cover { width: 42px; height: 42px; border-radius: 5px; object-fit: cover; background: #eee4dc; }
+.zhao-song-info { min-width: 0; }
+.zhao-song-title { display: block; overflow: hidden; font-size: 11px; font-weight: 720; text-overflow: ellipsis; white-space: nowrap; }
+.zhao-song-detail { display: block; margin-top: 4px; overflow: hidden; color: #958b83; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.zhao-song-duration { color: #aaa099; font-size: 9px; text-align: right; }
+.zhao-like-button { display: grid; width: 27px; height: 30px; place-items: center; border: 0; background: transparent; color: #a99d94; font-size: 19px; }
+.zhao-like-button.zhao-is-liked, .zhao-player-heart.zhao-is-liked { color: var(--zhao-coral); }
+.zhao-empty-state { padding: 22px 10px; color: #9b9189; font-size: 11px; text-align: center; }
+.zhao-player-bar { position: fixed; z-index: 5; right: 0; bottom: calc(58px + env(safe-area-inset-bottom)); left: 0; display: flex; width: min(100%,520px); min-height: 57px; align-items: center; gap: 9px; margin: 0 auto; padding: 7px 17px; border-top: 1px solid #e9e5e1; background: #fffffff5; box-shadow: 0 -4px 14px #38291c0a; backdrop-filter: blur(12px); }
+.zhao-player-cover { width: 40px; height: 40px; flex: 0 0 auto; border-radius: 4px; object-fit: cover; }
+.zhao-player-meta { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 3px; }
+.zhao-player-title { overflow: hidden; font-size: 11px; font-weight: 750; text-overflow: ellipsis; white-space: nowrap; }
+.zhao-player-artist { overflow: hidden; color: #978e87; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.zhao-player-actions { display: flex; align-items: center; gap: 2px; }
+.zhao-player-heart { color: #9d9188; font-size: 21px; }
+.zhao-play-button { display: grid; width: 33px; height: 33px; place-items: center; padding-left: 2px; border: 0; border-radius: 50%; background: #262522; color: white; font-size: 12px; }
+.zhao-queue-button { color: #48433e; font-size: 20px; }
+.zhao-player-progress { position: absolute; right: 0; bottom: 0; left: 0; height: 2px; background: linear-gradient(90deg,#4388df 27%,#eee9e4 27%); }
+.zhao-bottom-nav { position: fixed; z-index: 6; right: 0; bottom: 0; left: 0; display: flex; width: min(100%,520px); height: calc(58px + env(safe-area-inset-bottom)); justify-content: space-around; margin: 0 auto; padding: 5px 8px max(5px,env(safe-area-inset-bottom)); border-top: 1px solid #f0ece8; background: #fff; }
+.zhao-bottom-tab { display: flex; min-width: 45px; flex: 1; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: 0; background: transparent; color: #918982; }
+.zhao-bottom-tab > span { font-size: 20px; line-height: 1; }
+.zhao-bottom-tab small { font-size: 9px; white-space: nowrap; }
+.zhao-bottom-tab.zhao-is-active { color: #347bd5; }
+.zhao-toast { position: fixed; z-index: 10; right: 50%; bottom: calc(128px + env(safe-area-inset-bottom)); max-width: calc(100% - 40px); padding: 9px 14px; border-radius: 5px; background: #292521ef; color: white; font-size: 11px; opacity: 0; pointer-events: none; transform: translate(50%,8px); transition: opacity .2s,transform .2s; white-space: nowrap; }
+.zhao-toast.zhao-is-visible { opacity: 1; transform: translate(50%,0); }
+.zhao-hero-loading, .zhao-shortcut-loading { min-height: 85px; border-radius: 5px; background: linear-gradient(100deg,#f1eae4 25%,#faf6f2 45%,#f1eae4 65%); background-size: 200% 100%; animation: zhao-shimmer 1.2s infinite linear; }
+.zhao-load-error { grid-column: 1 / -1; padding: 18px 8px; color: #8e8178; font-size: 11px; text-align: center; }
+@keyframes zhao-shimmer { to { background-position: -200% 0; } }
+@keyframes zhao-rise-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+@media (min-width: 760px) {
+  body { padding: 18px 0; background: #f5f1ec; }
+  .zhao-app-shell { min-height: calc(100vh - 36px); border: 1px solid #eee8e2; border-radius: 10px; box-shadow: 0 8px 36px #38291c0d; }
+  .zhao-player-bar, .zhao-bottom-nav { border-right: 1px solid #eee8e2; border-left: 1px solid #eee8e2; }
+}
+@media (max-width: 365px) {
+  .zhao-header { padding-right: 15px; padding-left: 15px; }
+  .zhao-content { padding-right: 15px; padding-left: 15px; }
+  .zhao-header-line { gap: 10px; }
+  .zhao-top-nav { gap: 9px; }
+  .zhao-song-tools { gap: 3px; }
+  .zhao-list-filter { padding-right: 6px; padding-left: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

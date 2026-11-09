@@ -1,0 +1,14 @@
+[
+  { "icon": "✉", "title": "我的消息", "detail": "薛之谦给你发了私信", "avatar": "../assets/cover-moon.svg", "action": "messages" },
+  { "icon": "▽", "title": "蛙蛇音效", "detail": "通用耳机", "action": "sound" },
+  { "icon": "◴", "title": "音乐闹钟", "detail": "", "action": "alarm" },
+  { "icon": "♧", "title": "游戏中心", "detail": "全新上线，天天领金币", "action": "games" },
+  { "icon": "Ⓐ", "title": "AI应用", "detail": "免费AI写歌、AI唱歌", "action": "ai" },
+  { "icon": "♡", "title": "听歌偏好设置", "detail": "", "action": "preferences" },
+  { "icon": "♧", "title": "装扮中心", "detail": "吉伊卡哇装扮上新！", "avatar": "../assets/cover-sunrise.svg", "divider": true, "action": "dressup" },
+  { "icon": "◇", "title": "星光卡", "detail": "利泽星星卡上线！", "avatar": "../assets/cover-night.svg", "action": "starlight" },
+  { "icon": "♙", "title": "勋章收藏馆", "detail": "", "dot": true, "action": "medals" },
+  { "icon": "♧", "title": "酷狗AI助手", "detail": "", "action": "assistant" },
+  { "icon": "▤", "title": "乐签", "detail": "稀有歌词卡免费抽", "action": "lyrics" },
+  { "icon": "♧", "title": "铃声彩铃", "detail": "人设过《Did you ever love me,》", "action": "ringtones" }
+]

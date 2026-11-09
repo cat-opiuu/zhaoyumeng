@@ -1,0 +1,47 @@
+[
+  {
+    "id": "song-01",
+    "title": "晚风告白",
+    "artist": "陈婧霏",
+    "album": "天台上的月亮",
+    "cover": "./assets/cover-moon.svg",
+    "duration": "03:42",
+    "liked": false
+  },
+  {
+    "id": "song-02",
+    "title": "晴天以后",
+    "artist": "房东的猫",
+    "album": "美好事物",
+    "cover": "./assets/cover-sunrise.svg",
+    "duration": "04:06",
+    "liked": true
+  },
+  {
+    "id": "song-03",
+    "title": "沿海公路",
+    "artist": "棱镜",
+    "album": "总有一天你会出现在我身边",
+    "cover": "./assets/cover-coast.svg",
+    "duration": "05:18",
+    "liked": false
+  },
+  {
+    "id": "song-04",
+    "title": "银河漫游指南",
+    "artist": "告五人",
+    "album": "运气来得若有似无",
+    "cover": "./assets/cover-night.svg",
+    "duration": "04:29",
+    "liked": false
+  },
+  {
+    "id": "song-05",
+    "title": "慢慢喜欢你",
+    "artist": "莫文蔚",
+    "album": "我们在中场相遇",
+    "cover": "./assets/cover-moon.svg",
+    "duration": "04:14",
+    "liked": true
+  }
+]
