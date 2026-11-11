@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>任务三 · 综合创作 + 技术答辩 · 实机演示</title>
+<!--
+  作者：赵予萌
+  建立时间：2026-11-11
+  使用大模型：GLM-5.3-Flash
+  功能名称：Swiper 任务三（综合创作 + 技术答辩）实机演示独立窗口页：第六件展品爱达·魔都号 + keyboard 键盘控制
+-->
+<!-- Swiper 组件库 CDN，与主任务页一致 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;background:#f6f8fc;color:#1f2937;padding:40px 20px 60px}
+  .zym_wrap{max-width:900px;margin:0 auto}
+  .zym_head{background:linear-gradient(135deg,#0f2b5b,#1d5bbf);border-radius:18px;padding:26px 30px;color:#fff;margin-bottom:22px;box-shadow:0 12px 30px rgba(15,43,91,.25)}
+  .zym_head .zym_badge{display:inline-block;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);font-size:12px;letter-spacing:2px;margin-bottom:10px}
+  .zym_head h1{font-size:22px;letter-spacing:1px}
+  .zym_head p{margin-top:8px;font-size:13.5px;color:#d9e3f5;line-height:1.9}
+
+  /* 实机演示区 */
+  .zym_swiperbox{background:#fff;border:1px solid #e8ecf5;border-radius:16px;padding:18px 18px 14px;box-shadow:0 4px 14px rgba(31,41,55,.06);margin:16px 0}
+  .zym_swiperbox .swiper .swiper-wrapper{transition-timing-function:cubic-bezier(.25,.8,.25,1)}
+  .zym_swiperbox .swiper-slide{position:relative;height:300px;border-radius:12px;overflow:hidden}
+  .zym_swiperbox .swiper-slide img{width:100%;height:100%;object-fit:cover;display:block}
+  .zym_cap{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 12px;color:#fff;background:linear-gradient(transparent,rgba(5,15,35,.82))}
+  .zym_cap b{font-size:16px;letter-spacing:1px}
+  .zym_cap p{font-size:12px;color:#dbe6f8;margin-top:3px}
+  .zym_swiperbox .swiper-pagination-bullet{background:#0f2b5b;opacity:.35}
+  .zym_swiperbox .swiper-pagination-bullet-active{background:#e8890c;opacity:1;width:22px;border-radius:6px}
+  .zym_keytip{background:#fffbea;border:1px solid #fde68a;border-radius:12px;padding:10px 16px;margin:0 0 16px;font-size:13px;color:#7c5e10;line-height:2}
+  .zym_keytip code{background:#fef3c7;color:#92400e;padding:1px 7px;border-radius:5px;font-family:Consolas,monospace}
+
+  .zym_dlg{background:#f8faff;border:1px solid #dbe4ff;border-radius:14px;padding:20px 22px;margin:16px 0}
+  .zym_dlg h4{font-size:15px;color:#0f2b5b;margin:0 0 10px}
+  .zym_dlg .zym_round{font-size:13.5px;color:#374151;line-height:2;margin:8px 0}
+  .zym_dlg .zym_round b{color:#b45309}
+  .zym_dlg pre{background:#0f172a;color:#d7e3ff;padding:12px 14px;border-radius:10px;overflow-x:auto;font-family:Consolas,monospace;font-size:12.5px;line-height:1.8;margin:6px 0 10px}
+  .zym_ans{background:#f0fdf4;border:1.5px dashed #16a34a;border-radius:12px;padding:12px 16px;margin:12px 0;font-size:13.5px;color:#166534;line-height:2}
+  .zym_ans b{color:#15803d}
+  .zym_back{text-align:center;margin-top:26px}
+  .zym_back a{display:inline-block;text-decoration:none;color:#0f2b5b;font-size:14px;font-weight:bold;background:#fff;border:1px solid #dbe4ff;border-radius:999px;padding:9px 22px;margin:0 6px;transition:transform .2s,box-shadow .2s}
+  .zym_back a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(15,43,91,.15)}
+</style>
+</head>
+<body>
+<div class="zym_wrap">
+  <div class="zym_head">
+    <span class="zym_badge">S W I P E R · 任 务 三</span>
+    <h1>🏆 任务三 · 综合创作 + 技术答辩（超纲加分项）</h1>
+    <p>① 第六件展品：爱达·魔都号（首艘国产大型邮轮，2024 年 1 月首航，AI 生成横版 16:9，slide 结构完整）　② 课堂没讲过的新能力：keyboard 键盘控制——下面的轮播真实运行，点一下海报再按 ← → 方向键试试。</p>
+  </div>
+
+  <p class="zym_keytip">⌨️ 键盘操作提示：先用鼠标<b>点一下轮播区域</b>（确保它在视口内获得焦点），再按 <code>←</code> / <code>→</code> 方向键翻页；按 <code>↓</code>/<code>↑</code> 也支持。页面滚动到别处时按键不会误翻（onlyInViewport）。</p>
+
+  <div class="zym_swiperbox">
+    <div class="swiper" id="zym_sw6">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="swiper-imgs/tiangong_1.jpg" alt="天宫空间站"><div class="zym_cap"><b>天宫空间站</b><p>2022 年全面建成 · 中国人的太空家园</p></div></div>
+        <div class="swiper-slide"><img src="swiper-imgs/fuxing_1.jpg" alt="复兴号动车组"><div class="zym_cap"><b>复兴号动车组</b><p>350 km/h · 世界商业运营最高时速</p></div></div>
+        <div class="swiper-slide"><img src="swiper-imgs/c919_1.jpg" alt="C919大飞机"><div class="zym_cap"><b>C919 大飞机</b><p>2023 年商业首航 · 国产干线客机翱翔蓝天</p></div></div>
+        <div class="swiper-slide"><img src="swiper-imgs/fendouzhe_1.jpg" alt="奋斗者号"><div class="zym_cap"><b>奋斗者号</b><p>10909 米 · 触碰地球第四极马里亚纳海沟</p></div></div>
+        <div class="swiper-slide"><img src="swiper-imgs/fast_1.jpg" alt="中国天眼"><div class="zym_cap"><b>中国天眼 FAST</b><p>500 米口径 · 世界最大单口径射电望远镜</p></div></div>
+        <div class="swiper-slide"><img src="swiper-imgs/adora_1.jpg" alt="爱达·魔都号"><div class="zym_cap"><b>爱达·魔都号</b><p>首艘国产大型邮轮 · 2024 年 1 月首航 · "海上移动城市"（第六件展品）</p></div></div>
+      </div>
+      <div class="swiper-pagination" id="zym_pag6"></div>
+    </div>
+  </div>
+
+  <div class="zym_dlg">
+    <h4>💬 与 AI 的关键对话记录（提示词 + 重要往返）</h4>
+    <p class="zym_round"><b>提示词：</b></p>
+    <pre>为光影展轮播增加 keyboard 键盘控制，要求轮播不在可视区域时不响应方向键，
+避免滚动页面时误翻看不见的轮播。</pre>
+    <p class="zym_round"><b>AI 第一次回答的问题：</b>只写了 <code>keyboard: true</code>，没有视口限制——页面一滚动，按方向键就会误翻看不见的轮播。</p>
+    <p class="zym_round"><b>追问后修正（最终配置）：</b></p>
+    <pre>keyboard: {
+  enabled: true,          // 开启键盘控制
+  onlyInViewport: true,   // 仅当轮播在视口内时才响应方向键
+}</pre>
+  </div>
+
+  <div class="zym_ans">
+    <b>答辩四连问预答：</b><br>
+    ① <b>这段代码什么意思？</b>keyboard 模块监听键盘方向键翻页；enabled 开启模块；onlyInViewport 限定轮播进入视口才接管按键。<br>
+    ② <b>AI 第一次给的哪里不对？</b>只写了 keyboard: true，没有视口限制，滚动页面后按方向键会误翻看不见的轮播。<br>
+    ③ <b>你改了什么？</b>补上 onlyInViewport: true，并同步加到 destroy 后重建的配置里，否则切换效果后键盘控制会丢。<br>
+    ④ <b>新参数的作用 + 现场改 delay：</b>把 autoplay.delay 从 3200 改成 2600，翻页间隔缩短、节奏变快；预期变化是每 2.6 秒自动翻一张，拖动后依旧继续自动播放。
+  </div>
+
+  <div class="zym_back">
+    <a href="swiper-task.html">← 返回 Swiper 任务页</a>
+    <a href="index.html">返回首页</a>
+  </div>
+</div>
+
+<script>
+// 功能：初始化光影展轮播——第六件展品爱达·魔都号 + keyboard 键盘控制
+var zym_sw6 = new Swiper("#zym_sw6", {
+  speed: 600,
+  keyboard: {
+    enabled: true,          // 开启键盘控制：方向键翻页
+    onlyInViewport: true,   // 轮播在视口内才响应，避免滚动页面时误翻
+  },
+  autoplay: { delay: 3200, disableOnInteraction: false },  // 手动操作后自动轮播不停止
+  pagination: { el: "#zym_pag6", clickable: true },
+});
+</script>
+</body>
+</html>

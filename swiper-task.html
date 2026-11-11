@@ -79,6 +79,16 @@
   .zym_ans b{color:#15803d}
   .zym_shot{border:2px dashed #94a8ff;border-radius:12px;padding:28px 18px;text-align:center;color:#5b6bd6;font-size:13.5px;background:#f3f6ff;margin:10px 0;line-height:1.9}
   .zym_pic{display:block;width:100%;border:1px solid #dbe4ff;border-radius:12px;margin:10px 0;box-shadow:0 4px 14px rgba(15,43,91,.08)}
+  /* AI 任务独立窗口入口卡片 */
+  .zym_links{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0 4px}
+  .zym_card{
+    flex:1 1 240px;display:flex;flex-direction:column;gap:8px;text-decoration:none;
+    background:linear-gradient(135deg,#ffffff,#f2f6ff);border:1px solid #dbe4ff;border-radius:14px;
+    padding:18px 20px;transition:transform .2s,box-shadow .2s,border-color .2s;
+  }
+  .zym_card:hover{transform:translateY(-4px);box-shadow:0 14px 26px rgba(29,91,191,.16);border-color:#94a8ff}
+  .zym_card b{font-size:15px;color:#0f2b5b}
+  .zym_card span{font-size:13px;color:#68738d;line-height:1.8}
 
   /* 效果切换按钮 */
   .wy-fx{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px}
@@ -246,112 +256,31 @@
     </div>
   </div>
 
-  <!-- AI 协作问答与验证区（任务一 / 二 / 三） -->
+  <!-- AI 协作任务区（任务一 / 二 / 三 + 提示词记录） -->
   <div class="wy-sec">
     <div class="wy-sec-head">
       <span class="wy-no">5</span>
-      <h2>AI 协作任务 · 对话记录与验证截图<small>任务一 · 提示词工程师 / 任务二 · creative 仿写 / 任务三 · 综合创作答辩</small></h2>
+      <h2>AI 协作任务 · 实机演示与对话记录<small>点击下方卡片进入各任务的独立窗口页（能跑的轮播 + 与 AI 的关键对话）</small></h2>
     </div>
 
-    <!-- 任务一：提示词工程师 -->
-    <div class="zym_dlg">
-      <h4>📌 任务一 · 提示词工程师：让 AI 听懂需求</h4>
-      <p class="zym_round"><b>需求翻译：</b>生成 new Swiper('#wySw4', {...}) 配置——① 无缝循环 ② 3.2 秒自动翻页且手动操作后不停止 ③ 圆点分页器可点击 ④ 初始效果为 cube。</p>
-
-      <p class="zym_round"><b>第 1 轮提示词：</b></p>
-      <pre>生成 new Swiper('#wySw5', {...}) 配置：① 无缝循环 ② 3.2 秒自动翻页且
-手动操作后不停止 ③ 圆点分页器可点击 ④ 初始效果为 cube。只要代码。</pre>
-
-      <p class="zym_round"><b>AI 第 1 轮回答（节选）：</b></p>
-      <pre>var wySw5 = new Swiper("#wySw5", {
-  effect: "cube",
-  loop: true,                       ← 问题：cube 特效下开 loop，翻页会错乱
-  autoplay: { delay: 3200, disableOnInteraction: false },
-  pagination: { el: "#wyPag5", clickable: true },
-});</pre>
-
-      <p class="zym_round"><b>发现问题：</b>AI 直接写了 loop:true——cube 立方体特效原生不支持无缝循环，这属于"假装可以实现"。</p>
-
-      <p class="zym_round"><b>第 2 轮提示词（说清楚兼容性）：</b></p>
-      <pre>严格遵守所有要求，重点注意兼容性：Swiper 的 cube 立方体特效原生不支持
-loop 无缝循环，你需要在注释里标注这个限制，不要直接写 loop:true 假装可以
-实现；另外不要额外添加 cubeEffect 阴影等没有要求的参数。</pre>
-
-      <p class="zym_round"><b>AI 第 2 轮回答（修正后）：</b></p>
-      <pre>// ⚠️ 限制说明：cube 特效基于 3D transform 计算，原生不支持 loop:true
-//    因此不写 loop，到末张后回到第一张重新轮播（autoplay 不受影响）
-var wySw5 = new Swiper("#wySw5", {
-  effect: "cube",
-  speed: 600,
-  autoplay: { delay: 3200, disableOnInteraction: false },
-  pagination: { el: "#wyPag5", clickable: true },
-});</pre>
-
-      <div class="zym_ans"><b>一句话结论：</b>第 2 轮修正后四项需求全部落实（无缝循环因特效限制改为注释标注），粘进页面验证：cube 立方体翻页、圆点点击跳转、手动拖动后自动播放继续，均正常。</div>
-
-      <img class="zym_pic" src="swiper-shots/shot1_cube.png" alt="截图1：cube效果+圆点可点运行画面">
-      <img class="zym_pic" src="swiper-shots/shot2_autoplay.png" alt="截图2：拖动后自动播放继续的画面">
-      <p class="zym_round"><b>答辩抽问预答：</b>第一版提示词漏掉了"cube 与 loop 不兼容"这个隐性坑，AI 就顺着写出了 loop:true；第二轮我在提示词里点名了兼容性限制、要求注释标注而不是假装实现，还补了"不加需求外参数"，AI 输出就干净了。</p>
-    </div>
-
-    <!-- 任务二：creative 仿写 -->
-    <div class="zym_dlg">
-      <h4>📌 任务二 · creative 仿写：课堂没讲，AI 教你</h4>
-      <p class="zym_round"><b>做法：</b>打开官方示例 swiper/demo/257-effect-creative.html，配合 AI 读懂 creativeEffect 的 transform 写法，为演示四新增第 7 个按钮「creative 电影墙」。</p>
-
-      <p class="zym_round"><b>第 1 轮提示词：</b></p>
-      <pre>为任务4新增第 7 个按钮「creative 电影墙」：上一张缩小左移并带角度、
-下一张放大右移进场（参数自定，但要"像电影选片墙"）。</pre>
-
-      <p class="zym_round"><b>AI 第 1 轮回答的坑：</b>rotate 写成了 Z 轴 <code>[0,0,-8]</code>（平面内打转，没有立体感）；next 用了 scale:1.08 + z:60，进场张被推到比当前张更近的位置，直接盖在画面前面。</p>
-
-      <p class="zym_round"><b>第 2 轮提示词（追问 + 指出参照物）：</b></p>
-      <pre>不对，要按照官方示例 257-effect-creative.html 的写法重做：退出的幻灯片
-向左移动、缩小、带 Y 轴倾斜角度；新幻灯片从右边缘外移入、逐步放大、角度
-回正；z 一律为负值，保证邻居张永远叠在当前张后面。</pre>
-
-      <p class="zym_round"><b>AI 第 2 轮回答（最终配置，已实现在本页第 7 个按钮上）：</b></p>
-      <pre>if (fxName === "creative") {
-  wyFxOptions.creativeEffect = {
-    prev: { shadow: true, scale: 0.72,
-            translate: ["-42%", 0, -260], rotate: [0, 18, 0] },
-    next: { shadow: true, scale: 0.82,
-            translate: ["82%", 0, -140],  rotate: [0, -18, 0] },
-  };
-}</pre>
-
-      <div class="zym_ans"><b>追问自答——prev / next 的 transform 各控制什么？</b>prev 控制"上一张"的停放姿势：缩小到 0.72、左移 42%、沉入 z=-260 深处、绕 Y 轴倾斜 18°；next 控制"下一张"的停放姿势：停在右边缘外、略小、反向倾斜 18°。拖动时两张都在"停放姿势 ↔ 居中 [0,0,0]"之间插值，就形成了电影墙的进出动画。</div>
-      <div class="zym_ans"><b>答辩抽问预答：</b>transform 里的百分号相对<b>slide 自身尺寸</b>（"42%"就是一个身位）；把 rotate 改成 <code>[0, 20, 0]</code>，卡片就绕 Y 轴转 20 度。</div>
-
-      <img class="zym_pic" src="swiper-shots/shot3_creative.png" alt="截图3：creative电影墙运行画面">
-    </div>
-
-    <!-- 任务三：综合创作 + 技术答辩 -->
-    <div class="zym_dlg">
-      <h4>📌 任务三 · 综合创作 + 技术答辩（超纲加分项）</h4>
-      <p class="zym_round"><b>① 第六件展品：</b>爱达·魔都号（首艘国产大型邮轮，2024 年 1 月 1 日商业首航）已加入四个演示台的轮播末尾，图片 swiper-imgs/adora_1.jpg 为横版 16:9，slide 结构完整（img + wy-cap 标题/说明）。</p>
-      <p class="zym_round"><b>② 新增 Swiper 能力：</b>选了 <b>keyboard 键盘控制</b>，加在演示四 #wySw4 上：</p>
-      <pre>keyboard: {
-  enabled: true,          // 开启键盘控制
-  onlyInViewport: true,   // 仅当轮播在视口内时才响应方向键
-}</pre>
-
-      <p class="zym_round"><b>关键对话记录：</b></p>
-      <pre>提示词：为 #wySw4 增加 keyboard 键盘控制，要求轮播不在可视区域时不响应，
-避免滚动页面时按方向键误翻轮播。
-AI 回答：使用 keyboard 模块，keyboard: { enabled: true, onlyInViewport: true }，
-并提示：初始配置和 destroy 后重建的配置都要加，否则切换效果后键盘控制会丢。</pre>
-
-      <div class="zym_ans">
-        <b>答辩四连问预答：</b><br>
-        ① <b>这段代码什么意思？</b>keyboard 模块监听键盘方向键翻页；enabled 开启模块；onlyInViewport 限定轮播进入视口才接管按键。<br>
-        ② <b>AI 第一次给的哪里不对？</b>只写了 keyboard: true，没有视口限制——页面一滚动，按方向键就会误翻看不见的轮播。<br>
-        ③ <b>你改了什么？</b>补上 onlyInViewport: true，并同步加到重建配置里。<br>
-        ④ <b>新参数的作用 + 现场改 delay：</b>把 autoplay.delay 从 3200 改成 2600，翻页间隔缩短、节奏变快；预期变化是数着秒看每 2.6 秒自动翻一张，拖动后依旧继续自动播放。
-      </div>
-
-      <img class="zym_pic" src="swiper-shots/shot4_keyboard.png" alt="截图4：keyboard键盘控制验证画面">
-      <img class="zym_pic" src="swiper-shots/shot5_delay.png" alt="截图5：delay改为2600后的自动播放节奏画面">
+    <!-- 三个任务窗口入口卡片：实机演示 + 对话记录在独立页面内 -->
+    <div class="zym_links">
+      <a class="zym_card" href="swiper-task-1.html">
+        <b>📌 任务一 · 提示词工程师</b>
+        <span>两轮提示词迭代驯服 cube 与 loop 的兼容性坑 · 双实机演示对比：问题版 loop:true 翻页错乱 vs 修正版正常轮播</span>
+      </a>
+      <a class="zym_card" href="swiper-task-2.html">
+        <b>🎨 任务二 · creative 仿写</b>
+        <span>第 7 个效果的实机演示：creative 电影墙真实运行，海报在展框内缩小左移进场、放大回正</span>
+      </a>
+      <a class="zym_card" href="swiper-task-3.html">
+        <b>🏆 任务三 · 综合创作答辩</b>
+        <span>第六件展品爱达·魔都号 + keyboard 键盘控制实机演示（onlyInViewport），附关键对话记录与答辩四连问预答</span>
+      </a>
+      <a class="zym_card" href="zym-prompt.html">
+        <b>📝 提示词记录 · zym_prompt.md</b>
+        <span>本项目全部 AI 提示词留档：时间 + 模型 + 提示词原文，附加写入不覆盖，供答辩查验（网页版）</span>
+      </a>
     </div>
   </div>
 

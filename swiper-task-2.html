@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>任务二 · creative 电影墙 · 实机演示与角度调节器</title>
+<!--
+  作者：赵予萌
+  建立时间：2026-11-11
+  使用大模型：GLM-5.3-Flash
+  功能名称：Swiper 任务二（creative 电影墙）实机演示独立窗口页：从主页面第 7 个效果提取，附角度调节器
+-->
+<!-- Swiper 组件库 CDN，与主任务页一致 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;background:#f6f8fc;color:#1f2937;padding:40px 20px 60px}
+  .zym_wrap{max-width:1100px;margin:0 auto}
+  .zym_head{background:linear-gradient(135deg,#0f2b5b,#1d5bbf);border-radius:18px;padding:26px 30px;color:#fff;margin-bottom:22px;box-shadow:0 12px 30px rgba(15,43,91,.25)}
+  .zym_head .zym_badge{display:inline-block;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);font-size:12px;letter-spacing:2px;margin-bottom:10px}
+  .zym_head h1{font-size:22px;letter-spacing:1px}
+  .zym_head p{margin-top:8px;font-size:13.5px;color:#d9e3f5;line-height:1.9}
+
+  /* 舞台：轮播全宽，海报在展框内进出（默认 overflow hidden 裁剪溢出） */
+  .zym_swiperbox{flex:1 1 100%;min-width:0;background:#fff;border:1px solid #e8ecf5;border-radius:16px;padding:18px 18px 14px;box-shadow:0 4px 14px rgba(31,41,55,.06)}
+  .zym_swiperbox .swiper .swiper-wrapper{transition-timing-function:cubic-bezier(.25,.8,.25,1)}
+  .zym_swiperbox .swiper-slide{position:relative;height:300px;border-radius:12px;overflow:hidden}
+  .zym_swiperbox .swiper-slide img{width:100%;height:100%;object-fit:cover;display:block}
+  .zym_cap{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 12px;color:#fff;background:linear-gradient(transparent,rgba(5,15,35,.82))}
+  .zym_cap b{font-size:16px;letter-spacing:1px}
+  .zym_cap p{font-size:12px;color:#dbe6f8;margin-top:3px}
+  .zym_swiperbox .swiper-pagination-bullet{background:#0f2b5b;opacity:.35}
+  .zym_swiperbox .swiper-pagination-bullet-active{background:#e8890c;opacity:1;width:22px;border-radius:6px}
+
+  .zym_ans{background:#f0fdf4;border:1.5px dashed #16a34a;border-radius:12px;padding:12px 16px;margin:16px 0;font-size:13.5px;color:#166534;line-height:2}
+  .zym_ans b{color:#15803d}
+  .zym_back{text-align:center;margin-top:26px}
+  .zym_back a{display:inline-block;text-decoration:none;color:#0f2b5b;font-size:14px;font-weight:bold;background:#fff;border:1px solid #dbe4ff;border-radius:999px;padding:9px 22px;margin:0 6px;transition:transform .2s,box-shadow .2s}
+  .zym_back a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(15,43,91,.15)}
+</style>
+</head>
+<body>
+<div class="zym_wrap">
+  <div class="zym_head">
+    <span class="zym_badge">S W I P E R · 任 务 二</span>
+    <h1>🎨 任务二 · creative 电影墙 · 实机演示</h1>
+    <p>从主页面「七种效果任意切换」第 7 个按钮提取的 creative 电影墙配置，真实运行：退出张缩小左移带角度、进场张从右侧放大回正，海报始终在展框内进出。</p>
+  </div>
+
+  <div class="zym_swiperbox">
+      <div class="swiper" id="zym_sw7">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="swiper-imgs/tiangong_1.jpg" alt="天宫空间站"><div class="zym_cap"><b>天宫空间站</b><p>2022 年全面建成 · 中国人的太空家园</p></div></div>
+          <div class="swiper-slide"><img src="swiper-imgs/fuxing_1.jpg" alt="复兴号动车组"><div class="zym_cap"><b>复兴号动车组</b><p>350 km/h · 世界商业运营最高时速</p></div></div>
+          <div class="swiper-slide"><img src="swiper-imgs/c919_1.jpg" alt="C919大飞机"><div class="zym_cap"><b>C919 大飞机</b><p>2023 年商业首航 · 国产干线客机翱翔蓝天</p></div></div>
+          <div class="swiper-slide"><img src="swiper-imgs/fendouzhe_1.jpg" alt="奋斗者号"><div class="zym_cap"><b>奋斗者号</b><p>10909 米 · 触碰地球第四极马里亚纳海沟</p></div></div>
+          <div class="swiper-slide"><img src="swiper-imgs/fast_1.jpg" alt="中国天眼"><div class="zym_cap"><b>中国天眼 FAST</b><p>500 米口径 · 世界最大单口径射电望远镜</p></div></div>
+          <div class="swiper-slide"><img src="swiper-imgs/adora_1.jpg" alt="爱达·魔都号"><div class="zym_cap"><b>爱达·魔都号</b><p>首艘国产大型邮轮 · 2024年商业首航 · "海上移动城市"</p></div></div>
+        </div>
+        <div class="swiper-pagination" id="zym_pag7"></div>
+      </div>
+    </div>
+
+  <div class="zym_ans"><b>原理一句话：</b>creativeEffect 的 prev / next 分别定义"上一张、下一张"的停放姿势——缩小、左右平移、沉入 z 深处、绕 Y 轴倾斜；拖动换片时两张海报都在"停放姿势 ↔ 居中回正"之间插值，就形成了电影墙的进出动画。</div>
+
+  <div class="zym_back">
+    <a href="swiper-task.html">← 返回 Swiper 任务页</a>
+    <a href="index.html">返回首页</a>
+  </div>
+</div>
+
+<script>
+// 功能：初始化 creative 电影墙轮播——从主任务页第 7 个效果原样提取的配置
+var zym_sw7 = new Swiper("#zym_sw7", {
+  effect: "creative",
+  speed: 900,                     // 切换稍长，动作从容
+  grabCursor: true,               // 鼠标抓手，可拖拽逛墙
+  autoplay: { delay: 3200, disableOnInteraction: false },  // 手动操作后自动轮播不停止
+  pagination: { el: "#zym_pag7", clickable: true },
+  creativeEffect: {
+    prev: {
+      shadow: true,
+      origin: "center center",
+      scale: 0.72,                    // 退出张：缩小 + 左移 + 沉入深处
+      translate: ["-42%", 0, -260],
+      rotate: [0, 18, 0],             // Y 轴倾斜 18°
+    },
+    next: {
+      shadow: true,
+      origin: "center center",
+      scale: 0.82,                    // 停放略小 → 进场时逐步放大
+      translate: ["82%", 0, -140],    // 停在右缘外，进场放大回正
+      rotate: [0, -18, 0],            // 反向倾斜，居中回正
+    },
+  },
+});
+</script>
+</body>
+</html>

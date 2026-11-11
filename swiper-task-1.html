@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>任务一 · 提示词工程师 · AI 对话记录与实跑演示</title>
+<!--
+  作者：赵予萌
+  建立时间：2026-11-11
+  使用大模型：GLM-5.3-Flash
+  功能名称：Swiper 任务一（提示词工程师）AI 对话记录与实跑演示独立窗口页
+-->
+<!-- Swiper 组件库 CDN，供下方两轮代码的实跑演示使用 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;background:#f6f8fc;color:#1f2937;padding:40px 20px 60px}
+  .zym_wrap{max-width:900px;margin:0 auto}
+  .zym_head{background:linear-gradient(135deg,#0f2b5b,#1d5bbf);border-radius:18px;padding:26px 30px;color:#fff;margin-bottom:22px;box-shadow:0 12px 30px rgba(15,43,91,.25)}
+  .zym_head .zym_badge{display:inline-block;padding:4px 12px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);font-size:12px;letter-spacing:2px;margin-bottom:10px}
+  .zym_head h1{font-size:22px;letter-spacing:1px}
+  .zym_head p{margin-top:8px;font-size:13.5px;color:#d9e3f5;line-height:1.9}
+  .zym_dlg{background:#f8faff;border:1px solid #dbe4ff;border-radius:14px;padding:20px 22px;margin:16px 0}
+  .zym_dlg h4{font-size:15px;color:#0f2b5b;margin:0 0 10px}
+  .zym_dlg .zym_round{font-size:13.5px;color:#374151;line-height:2;margin:8px 0}
+  .zym_dlg .zym_round b{color:#b45309}
+  .zym_dlg pre{background:#0f172a;color:#d7e3ff;padding:12px 14px;border-radius:10px;overflow-x:auto;font-family:Consolas,monospace;font-size:12.5px;line-height:1.8;margin:6px 0 10px}
+  .zym_ans{background:#f0fdf4;border:1.5px dashed #16a34a;border-radius:12px;padding:12px 16px;margin:12px 0;font-size:13.5px;color:#166534;line-height:2}
+  .zym_ans b{color:#15803d}
+  .zym_pic{display:block;width:100%;border:1px solid #dbe4ff;border-radius:12px;margin:10px 0}
+  .zym_back{text-align:center;margin-top:26px}
+  .zym_back a{display:inline-block;text-decoration:none;color:#0f2b5b;font-size:14px;font-weight:bold;background:#fff;border:1px solid #dbe4ff;border-radius:999px;padding:9px 22px;margin:0 6px;transition:transform .2s,box-shadow .2s}
+  .zym_back a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(15,43,91,.15)}
+  /* 两轮代码实跑演示区 */
+  .zym_live{margin:12px 0 8px}
+  .zym_tag{display:inline-block;font-size:12.5px;border-radius:999px;padding:4px 14px;margin-bottom:12px}
+  .zym_tag_bad{color:#b91c1c;background:#fee2e2;border:1px solid #fca5a5}
+  .zym_tag_good{color:#15803d;background:#dcfce7;border:1px solid #86efac}
+  .zym_live .swiper{width:100%;max-width:560px;margin:0 auto}
+  .zym_live .swiper-slide{height:260px}
+  .zym_live .swiper-slide img{width:100%;height:100%;object-fit:cover;display:block}
+  .zym_live .swiper-pagination-bullet{background:#0f2b5b;opacity:.35}
+  .zym_live .swiper-pagination-bullet-active{background:#e8890c;opacity:1;width:22px;border-radius:6px}
+</style>
+</head>
+<body>
+<div class="zym_wrap">
+  <div class="zym_head">
+    <span class="zym_badge">S W I P E R · 任 务 一</span>
+    <h1>📌 任务一 · 提示词工程师：让 AI 听懂需求</h1>
+    <p>目标：生成 new Swiper('#wySw5', {...}) 配置——① 无缝循环 ② 3.2 秒自动翻页且手动操作后不停止 ③ 圆点分页器可点击 ④ 初始效果为 cube。</p>
+  </div>
+
+  <div class="zym_dlg">
+    <p class="zym_round"><b>需求翻译：</b>生成 new Swiper('#wySw5', {...}) 配置——① 无缝循环 ② 3.2 秒自动翻页且手动操作后不停止 ③ 圆点分页器可点击 ④ 初始效果为 cube。</p>
+
+    <p class="zym_round"><b>第 1 轮提示词：</b></p>
+    <pre>生成 new Swiper('#wySw5', {...}) 配置：① 无缝循环 ② 3.2 秒自动翻页且
+手动操作后不停止 ③ 圆点分页器可点击 ④ 初始效果为 cube。只要代码。</pre>
+
+    <p class="zym_round"><b>AI 第 1 轮回答（节选）：</b></p>
+    <pre>var wySw5 = new Swiper("#wySw5", {
+  effect: "cube",
+  loop: true,                       ← 问题：cube 特效下开 loop，翻页会错乱
+  autoplay: { delay: 3200, disableOnInteraction: false },
+  pagination: { el: "#wyPag5", clickable: true },
+});</pre>
+
+    <p class="zym_round"><b>发现问题：</b>AI 直接写了 loop:true——cube 立方体特效原生不支持无缝循环，这属于"假装可以实现"。</p>
+
+    <p class="zym_round"><b>第 2 轮提示词（说清楚兼容性）：</b></p>
+    <pre>严格遵守所有要求，重点注意兼容性：Swiper 的 cube 立方体特效原生不支持
+loop 无缝循环，你需要在注释里标注这个限制，不要直接写 loop:true 假装可以
+实现；另外不要额外添加 cubeEffect 阴影等没有要求的参数。</pre>
+
+    <p class="zym_round"><b>AI 第 2 轮回答（修正后）：</b></p>
+    <pre>// ⚠️ 限制说明：cube 特效基于 3D transform 计算，原生不支持 loop:true
+//    因此不写 loop，到末张后回到第一张重新轮播（autoplay 不受影响）
+var wySw5 = new Swiper("#wySw5", {
+  effect: "cube",
+  speed: 600,
+  autoplay: { delay: 3200, disableOnInteraction: false },
+  pagination: { el: "#wyPag5", clickable: true },
+});</pre>
+
+    <div class="zym_ans"><b>一句话结论：</b>第 2 轮修正后四项需求全部落实（无缝循环因特效限制改为注释标注），粘进页面验证：cube 立方体翻页、圆点点击跳转、手动拖动后自动播放继续，均正常。</div>
+
+    <p class="zym_round"><b>第 1 轮代码实跑演示（cube + loop:true 问题版 · 真实运行）：</b>观察翻页——立方体转到第 2、3 张附近会错乱跳页，这就是 loop 与 cube 不兼容的实跑表现。</p>
+    <div class="zym_live">
+      <span class="zym_tag zym_tag_bad">⚠️ 第 1 轮 · 问题版：cube 强行开 loop:true</span>
+      <div class="swiper" id="zym_sw5a">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="swiper-imgs/tiangong_1.jpg" alt="天宫空间站"></div>
+          <div class="swiper-slide"><img src="swiper-imgs/fuxing_1.jpg" alt="复兴号动车组"></div>
+          <div class="swiper-slide"><img src="swiper-imgs/c919_1.jpg" alt="C919大飞机"></div>
+          <div class="swiper-slide"><img src="swiper-imgs/fendouzhe_1.jpg" alt="奋斗者号"></div>
+          <div class="swiper-slide"><img src="swiper-imgs/fast_1.jpg" alt="中国天眼"></div>
+        </div>
+        <div class="swiper-pagination" id="zym_pag5a"></div>
+      </div>
+    </div>
+
+    <p class="zym_round"><b>第 2 轮代码实跑演示（去掉 loop 修正版 · 真实运行）：</b>cube 立方体翻页流畅，末张后回到首张继续轮播；拖动或点圆点后自动播放照常进行。</p>
+    <div class="zym_live">
+      <span class="zym_tag zym_tag_good">✅ 第 2 轮 · 修正版：去掉 loop，cube 正常轮播</span>
+      <div class="swiper" id="zym_sw5b">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="swiper-imgs/tiangong_1.jpg" alt="天宫空间站"></div>
+          <div class="swiper-slide"><img src="swiper-imgs/fuxing_1.jpg" alt="复兴号动车组"></div>
+          <div class="swiper-slide"><img src="swiper-imgs/c919_1.jpg" alt="C919大飞机"></div>
+          <div class="swiper-slide"><img src="swiper-imgs/fendouzhe_1.jpg" alt="奋斗者号"></div>
+          <div class="swiper-slide"><img src="swiper-imgs/fast_1.jpg" alt="中国天眼"></div>
+        </div>
+        <div class="swiper-pagination" id="zym_pag5b"></div>
+      </div>
+    </div>
+    <p class="zym_round"><b>答辩抽问预答：</b>第一版提示词漏掉了"cube 与 loop 不兼容"这个隐性坑，AI 就顺着写出了 loop:true；第二轮我在提示词里点名了兼容性限制、要求注释标注而不是假装实现，还补了"不加需求外参数"，AI 输出就干净了。</p>
+  </div>
+
+  <div class="zym_back">
+    <a href="swiper-task.html">← 返回 Swiper 任务页</a>
+    <a href="index.html">返回首页</a>
+  </div>
+</div>
+
+<script>
+// 功能：第 1 轮问题版演示——对应提示词里的 new Swiper('#wySw5', {...})，
+//       cube 特效下强行开 loop:true，实跑展示翻页错乱（本页 id 由 #wySw5 对应为 #zym_sw5a）
+var zym_swiper5a = new Swiper("#zym_sw5a", {
+  effect: "cube",
+  loop: true,   // ← 问题点：cube 原生不支持 loop，保留用于实跑对比
+  autoplay: { delay: 3200, disableOnInteraction: false },
+  pagination: { el: "#zym_pag5a", clickable: true },
+});
+
+// 功能：第 2 轮修正版演示——去掉 loop，cube 正常轮播，末张后回首张，
+//       3200ms 自动翻页且手动操作后不停止，圆点分页器可点击（#wySw5 对应 #zym_sw5b）
+var zym_swiper5b = new Swiper("#zym_sw5b", {
+  effect: "cube",
+  speed: 600,
+  autoplay: { delay: 3200, disableOnInteraction: false },
+  pagination: { el: "#zym_pag5b", clickable: true },
+});
+</script>
+</body>
+</html>
